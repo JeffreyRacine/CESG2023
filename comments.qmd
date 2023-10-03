@@ -1,0 +1,5 @@
+---
+title: "Comments on Kernel estimation in regression on vector and function spaces"
+format: revealjs
+editor: visual
+---
