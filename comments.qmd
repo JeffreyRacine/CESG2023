@@ -1,5 +1,52 @@
 ---
-title: "Comments on Kernel estimation in regression on vector and function spaces"
-format: revealjs
+title: "Kernel estimation in regression on vector and function spaces"
+subtitle: "Sid Kankanala, Marcia Schafgans, and Victoria Zinde-Walsh"
+author: Comments by Jeffrey Racine @ CESG 2023
+date: today
+format:
+  revealjs:
+    background-transition: fade
+    center: true
+    css: custom.css
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+          window.MathJax = {
+            tex: {
+              tags: 'ams'
+            }
+          };
+          </script>
 editor: visual
 ---
+
+## Project Overview
+
+-   The authors consider kernel-weighted nonparametric regression when the distribution of the regressors may not possess absolute continuity with respect to the Lebesgue measure
+
+-   They demonstrate that convergence rates are influenced non-trivially by the underlying distribution
+
+-   In the case of absolutely continuous measures, their approach weakens the usual regularity conditions
+
+-   They extend their analysis to encompass kernel regression with multiple functional regressors
+
+## Setting
+
+-   The authors consider a smooth nonparametric model with additive errors $$Y=m(X)+u,\qquad E(u|X)=0$$
+
+-   $X$ may belong to a function space, e.g., continuous functions on a compact set, or a more general metric space
+
+-   $X$ does not necessarily have to be a vector or a function
+
+-   $X$ is supported on some domain in a vector or metric, semi-metric space denoted as $\Xi$
+
+## Setting Cont.
+
+-   The authors consider three cases:
+
+    i.  $\Xi=\mathbb{R}^q$ (standard kernel regression)
+    
+    ii. $\Xi=\Xi^1$ (univariate metric space, i.e., functional regression)
+    
+    iii. $\Xi=\Xi^q=\Xi^1\times\cdots\times\Xi^1$ (product metric space)
