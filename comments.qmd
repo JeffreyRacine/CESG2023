@@ -18,8 +18,28 @@ format:
             }
           };
           </script>
+knitr:
+  opts_chunk:
+    autodep: true
+    collapse: true
+    cache: true
+    echo: false
+    eval.after: "fig.cap"
+    fig.align: "center"
+    message: false
+    warning: false
+    R.options:
+      np.messages: false
+      plot.par.mfrow: false
+bibliography: comments.bib      
 editor: visual
 ---
+
+```{r global_options}
+#| include: false
+library(np)
+set.seed(42)
+```
 
 ## Project Overview
 
@@ -64,6 +84,56 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     ii. Demonstrating that convergence rates are affected by the underlying distribution
 
     iii. Demonstrating that they can weaken usual regularity conditions assumed for such analysis
+
+## What do we currently know ($X\in\mathbb{D}^1$)?
+
+-   When $X$ has discrete support, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)$
+
+-   This is achieved by using, e.g., cross-validation to select smoothing parameters when using *categorical* kernel functions [@LI_RACINE:2007] or *continuous* kernel functions [@BIERENS:1983]
+
+    ```{r}
+    n <- 100
+    X <- sort(rbinom(n,5,.3))
+    dgp <- sin(2.5*X)
+    Y <- dgp + rnorm(n,sd=sd(dgp))
+    plot(X,Y,cex=.5,col="grey")
+    ghat.dgp <- lm(Y~sin(2.5*X))
+    points(X,fitted(ghat.dgp),col=2)
+    library(np)
+    options(np.messages=FALSE,np.tree=TRUE)
+    ghat.nw <- npreg(Y~ordered(X),bwtype="fixed",ckertype="epanechnikov")
+    points(X,fitted(ghat.nw),col=3)
+    points(X,dgp,col=4)
+    legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
+    ```
+
+## What do we currently know ($X\in\mathbb{R}^1$)?
+
+-   When $X$ has continuous support by is *unrelated* to $Y$, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
+
+-   This can be attained when using, e.g., cross-validation to select bandwidths that select $h\to\infty$ with high probability when using *continuous* kernel functions [@HALL_LI_RACINE:2007]
+
+    ```{r}
+    n <- 100
+    X <- sort(runif(n))
+    dgp <- rep(1,n)
+    Y <- dgp + rnorm(n)
+    plot(X,Y,cex=.5,col="grey")
+    ghat.dgp <- lm(Y~1)
+    points(X,fitted(ghat.dgp),col=2)
+    library(np)
+    options(np.messages=FALSE,np.tree=TRUE)
+    ghat.nw <- npreg(Y~X,bwtype="fixed",ckertype="epanechnikov")
+    points(X,fitted(ghat.nw),col=3)
+    points(X,dgp,col=4)
+    legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
+    ```
+
+## What do we currently know ($X\in\mathbb{R}^1$)?
+
+-   Otherwise, when kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence
+
+-   The authors consider, instead, cases where the convergence rate, when using *continuous* kernel functions
 
 ## Approach
 
