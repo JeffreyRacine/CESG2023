@@ -28,5 +28,5 @@
 /* It appears that the default for revealjs is 2.5em so < shrinks */   
 
 .reveal {
-    font-size: 2.4em;
+    font-size: 2.0em;
 }

@@ -1,7 +1,7 @@
 all:
 
-	quarto render comments.qmd
+	quarto render index.qmd
 
 preview:
 
-	quarto preview comments.qmd
+	quarto preview index.qmd

@@ -8,8 +8,8 @@ library(robustbase)
 options(np.tree=TRUE,np.messages=FALSE)
 set.seed(42)
 
-M <- 10
-n.vec <- c(50,100,200,400,800,1600,3200)
+M <- 1000
+n.vec <- c(100,200,400,800,1600,3200,6400,12800)
 X.pred.dgp <- X.pred <- c(-2,0,2)
 X.pred <- X.pred
 dgp.pred <- sin(2.5*X.pred.dgp)
