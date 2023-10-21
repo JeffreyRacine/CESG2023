@@ -3,12 +3,12 @@
 rm(list=ls())
 library(np)
 options(np.tree=TRUE,np.messages=FALSE)
+set.seed(42)
 
 M <- 1000
-n.trials <- 2
-n.vec <- c(100,200,400,800)
-X.pred.dgp <- X.pred <- 0:2
-X.pred <- ordered(X.pred)
+n.vec <- c(50,100,200,400,800)
+X.pred.dgp <- X.pred <- c(-2,0,2)
+X.pred <- X.pred
 dgp.pred <- sin(2.5*X.pred.dgp)
 newdata.dgp <- data.frame(X=X.pred.dgp)
 newdata <- data.frame(X=X.pred)
@@ -18,12 +18,12 @@ fitted.array <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
 
 for(j in 1:length(n.vec)) {
   for(i in 1:M) {
-    X <- sort(rbinom(n.vec[j],n.trials,.5))
+    X <- runif(n.vec[j],min=-3,max=3)
     dgp <- sin(2.5*X)
     Y <- dgp + rnorm(n.vec[j],sd=sd(dgp))
     ghat.dgp <- lm(Y~sin(2.5*X))
     fitted.array.dgp[j,i,] <- predict(ghat.dgp,newdata=newdata.dgp)
-    ghat.nw <- npreg(Y~ordered(X,levels=0:n.trials))
+    ghat.nw <- npreg(Y~X,ckertype="epanechnikov")
     fitted.array[j,i,] <- predict(ghat.nw,newdata=newdata)
   }
 }
@@ -45,15 +45,11 @@ for(i in 1:length(X.pred)) {
   mse.pointwise[i] <- coef(lm(log(mse[,i])~log(n.vec)))[2]
 }
 
-mse.dgp.pointwise <- c(coef(lm(log(mse.dgp[,1])~log(n.vec)))[2],
-                       coef(lm(log(mse.dgp[,2])~log(n.vec)))[2],
-                       coef(lm(log(mse.dgp[,3])~log(n.vec)))[2])
-
-mse.pointwise <- c(coef(lm(log(mse[,1])~log(n.vec)))[2],
-                   coef(lm(log(mse[,2])~log(n.vec)))[2],
-                   coef(lm(log(mse[,3])~log(n.vec)))[2])
-
 ylim <- range(c(mse.dgp.pointwise,mse.pointwise))
 plot(X.pred.dgp,mse.dgp.pointwise,main="Rate of Convergence",ylim=ylim,xlab="X",ylab="MSE",type="b")
 lines(X.pred.dgp,mse.pointwise,xlab="X",ylab="MSE",type="b",col="red")
 legend("topleft",legend=c("DGP","NW"),col=c("black","red"),lty=1,bty="n")
+
+foo <- data.frame(X.pred,mse.dgp.pointwise,mse.pointwise,mse.pointwise/mse.dgp.pointwise)
+colnames(foo) <- c("X","Oracle","NW","ratio")
+knitr::kable(foo,digits=2,align="rlll")

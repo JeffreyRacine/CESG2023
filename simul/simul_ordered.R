@@ -45,14 +45,6 @@ for(i in 1:length(X.pred)) {
   mse.pointwise[i] <- coef(lm(log(mse[,i])~log(n.vec)))[2]
 }
 
-mse.dgp.pointwise <- c(coef(lm(log(mse.dgp[,1])~log(n.vec)))[2],
-                       coef(lm(log(mse.dgp[,2])~log(n.vec)))[2],
-                       coef(lm(log(mse.dgp[,3])~log(n.vec)))[2])
-
-mse.pointwise <- c(coef(lm(log(mse[,1])~log(n.vec)))[2],
-                   coef(lm(log(mse[,2])~log(n.vec)))[2],
-                   coef(lm(log(mse[,3])~log(n.vec)))[2])
-
 ylim <- range(c(mse.dgp.pointwise,mse.pointwise))
 plot(X.pred.dgp,mse.dgp.pointwise,main="Rate of Convergence",ylim=ylim,xlab="X",ylab="MSE",type="b")
 lines(X.pred.dgp,mse.pointwise,xlab="X",ylab="MSE",type="b",col="red")
