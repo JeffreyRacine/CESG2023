@@ -1,6 +1,7 @@
 all:
 
 	quarto render index.qmd
+	Rscript -e 'knitr::purl("index.qmd")'
 
 preview:
 
