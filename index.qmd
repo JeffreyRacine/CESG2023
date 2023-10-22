@@ -374,7 +374,62 @@ colnames(foo.ct) <- c("X","Oracle","NW","ratio")
 ```{r continuoustable}
 knitr::kable(foo.ct,digits=2,align="rlll")
 ```
+## Comments
+
+```{r comments}
+#| fig.asp=0.75
+set.seed(42)
+
+fx <- function(x) {
+  0.5*dnorm(x+.767)+3*dnorm((x+.767-0.8)/.1)+2*dnorm((x+.767-1.2)/.1) 
+}
+
+fxmsd <- function(x) {
+  0.5*dnorm(x,mean=-.767)+3*.1*dnorm(x,mean=-(.767-0.8),sd=.1)+2*.1*dnorm(x,mean=-(.767-1.2),sd=.1) 
+}
+
+rfxmsd <- function(n) {
+  P <- sample(c("A","B","C"),n,replace=TRUE,prob=c(0.5,0.3,0.2))
+  P.n <- numeric(n)
+  P.n[P=="A"] <- rnorm(length(P[P=="A"]),mean=-.767)
+  P.n[P=="B"] <- rnorm(length(P[P=="B"]),mean=-(.767-0.8),sd=.1)
+  P.n[P=="C"] <- rnorm(length(P[P=="C"]),mean=-(.767-1.2),sd=.1) 
+  return(P.n)
+}
+
+x <- seq(-3.5,2,length=1000)
+
+par(mfrow=c(2,2))
+
+n <- 10^4
+breaks <- 100
+
+X <- sort(rfxmsd(n))
+xlim <- c(-3.5,2)
+ylim <- range(hist(X,breaks=breaks,plot=FALSE)$density,fxmsd(x))
+
+plot(x,fx(x),main="Density",xlim=xlim,xlab="X",ylab="fx(x)",type="l")
+lines(x,fxmsd(x),lty=2,col=2)
+
+hist(X,xlim=xlim,ylim=ylim,breaks=breaks,prob=TRUE,
+     main="Histogram/Density",
+     sub="Random Draw from fx(x)")
+lines(x,fxmsd(x))
+
+dgp <- sin(2.5*X)
+Y <- dgp + rnorm(n,sd=sd(dgp))
+plot(X,Y,cex=.1,xlim=xlim,col="grey")
+ghat.dgp <- lm(Y~sin(2.5*X))
+lines(X,fitted(ghat.dgp),col=2,lwd=2)
+ghat.nw <- npreg(Y~X,bwtype="fixed",ckertype="epanechnikov")
+lines(X,fitted(ghat.nw),col=3,lwd=3)
+legend("topleft",c("Oracle","NW"),col=c(2,3),lwd=c(2,3),bty="n")
+```
+
+
 
 ## Comments
 
 -   Figures - mixing $f(x)$ on vertical axis and $F(x)$ in description?
+
+## References
