@@ -1,0 +1,14 @@
+global_options	library	options
+categoricalkernel	~	c	fitted	legend	lm	npreg	plot	points	rbinom	rnorm	sd	set.seed	sin	sort
+continuouskernel	~	c	fitted	legend	lm	npreg	plot	points	rep	rnorm	runif	set.seed	sort
+ordered	[<-	^	~	array	c	coef	colMeans	colnames<-	data.frame	for	length	lm	ltsReg	M	matrix	npreg	numeric	ordered	predict	rbinom	rnorm	sd	set.seed	sin	sqrt	sweep
+orderedtable	::	foo.ot
+bierens	[<-	^	~	array	c	coef	colMeans	colnames<-	data.frame	for	length	lm	ltsReg	M	matrix	npreg	numeric	predict	rbinom	rnorm	sd	set.seed	sin	sqrt	sweep
+bierenstable	::	foo.bt
+irrelevant	[<-	^	~	array	c	coef	colMeans	colnames<-	data.frame	for	length	lm	ltsReg	M	matrix	npreg	numeric	predict	rep	rnorm	runif	set.seed	sqrt	sweep
+irrelevanttable	::	foo.it
+continuous	[<-	^	~	array	c	coef	colMeans	colnames<-	data.frame	for	length	lm	ltsReg	M	matrix	npreg	numeric	predict	rnorm	runif	sd	set.seed	sin	sqrt	sweep
+continuoustable	::	foo.ct
+comments	[<-	^	==	~	$	c	dnorm	fitted	hist	legend	length	lines	lm	npreg	numeric	par	plot	range	return	rnorm	sample	sd	seq	set.seed	sin	sort
+claw	[<-	^	==	~	$	abline	array	c	coef	colMeans	colnames<-	data.frame	dnorm	fitted	for	hist	legend	length	library	lines	lm	ltsReg	M	matrix	npreg	numeric	options	par	plot	predict	range	return	rnorm	sample	sd	seq	set.seed	sin	sort	sqrt	sweep
+clawtable	::	foo.claw

@@ -111,6 +111,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
     ```{r categoricalkernel}
     #| out.width = "75%"
+    set.seed(42)
     n <- 100
     X <- sort(rbinom(n,5,.3))
     dgp <- sin(2.5*X)
@@ -132,6 +133,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
     ```{r continuouskernel}
     #| out.width = "75%"
+    set.seed(42)    
     n <- 100
     X <- sort(runif(n))
     dgp <- rep(1,n)
@@ -397,8 +399,11 @@ knitr::kable(foo.ct,digits=2,align="rlll")
 
 ## Comments
 
-```{r comments}
+```{r claw}
 #| fig.asp=0.75
+library(np)
+library(robustbase)
+options(np.tree=TRUE,np.messages=FALSE)
 set.seed(42)
 
 fx <- function(x) {
@@ -431,11 +436,13 @@ ylim <- range(hist(X,breaks=breaks,plot=FALSE)$density,fxmsd(x))
 
 plot(x,fx(x),main="Density",xlim=xlim,xlab="X",ylab="fx(x)",type="l")
 lines(x,fxmsd(x),lty=2,col=2)
+abline(v=c(-.767,-(.767-0.8),-(.767-1.2)),col=2,lty=2)
 
 hist(X,xlim=xlim,ylim=ylim,breaks=breaks,prob=TRUE,
      main="Histogram/Density",
      sub="Random Draw from fx(x)")
 lines(x,fxmsd(x))
+abline(v=c(-.767,-(.767-0.8),-(.767-1.2)),col=2,lty=2)
 
 dgp <- sin(2.5*X)
 Y <- dgp + rnorm(n,sd=sd(dgp))
@@ -444,8 +451,65 @@ ghat.dgp <- lm(Y~sin(2.5*X))
 lines(X,fitted(ghat.dgp),col=2,lwd=2)
 ghat.nw <- npreg(Y~X,bwtype="fixed",ckertype="epanechnikov")
 lines(X,fitted(ghat.nw),col=3,lwd=3)
+abline(v=c(-.767,-(.767-0.8),-(.767-1.2)),col=2,lty=2)
 legend("topleft",c("Oracle","NW"),col=c(2,3),lwd=c(2,3),bty="n")
+
+## Monte Carlo
+
+n.vec <- c(50,100,200,400,800,1600,3200,6400,12800)
+X.pred.dgp <- X.pred <- c(-.767,-(.767-0.8),-(.767-1.2))
+X.pred <- X.pred
+dgp.pred <- sin(2.5*X.pred.dgp)
+newdata.dgp <- data.frame(X=X.pred.dgp)
+newdata <- data.frame(X=X.pred)
+
+fitted.array.dgp <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+fitted.array <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+
+for(j in 1:length(n.vec)) {
+  for(i in 1:M) {
+    X <- rfxmsd(n.vec[j])
+    dgp <- sin(2.5*X)
+    Y <- dgp + rnorm(n.vec[j],sd=sd(dgp))
+    ghat.dgp <- lm(Y~sin(2.5*X))
+    fitted.array.dgp[j,i,] <- predict(ghat.dgp,newdata=newdata.dgp)
+    ghat.nw <- npreg(Y~X,ckertype="epanechnikov")
+    fitted.array[j,i,] <- predict(ghat.nw,newdata=newdata)
+  }
+}
+
+## Compute pointwise RMSE at each support point
+
+rmse.dgp <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+rmse <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+for(j in 1:length(n.vec)) {
+  rmse.dgp[j,] <- sqrt(colMeans(sweep(fitted.array.dgp[j,,],2,dgp.pred)^2))
+  rmse[j,] <- sqrt(colMeans(sweep(fitted.array[j,,],2,dgp.pred)^2))
+}
+
+rmse.dgp.pointwise <- numeric()
+rmse.pointwise <- numeric()
+
+for(i in 1:length(X.pred)) {
+  rmse.dgp.pointwise[i] <- coef(ltsReg(log(rmse.dgp[,i])~log(n.vec)))[2]
+  rmse.pointwise[i] <- coef(ltsReg(log(rmse[,i])~log(n.vec)))[2]
+}
+
+ylim <- range(c(rmse.dgp.pointwise,rmse.pointwise))
+
+plot(X.pred.dgp,rmse.dgp.pointwise,main="Rate of Convergence",xlim=xlim,ylim=ylim,xlab="X",ylab="RMSE",type="b")
+lines(X.pred.dgp,rmse.pointwise,xlab="X",ylab="RMSE",type="b",col="red")
+abline(v=c(-.767,-(.767-0.8),-(.767-1.2)),col=2,lty=2)
+legend("topleft",legend=c("Oracle","NW"),col=c("black","red"),lty=1,bty="n")
+
+foo.claw <- data.frame(X.pred,rmse.dgp.pointwise,rmse.pointwise,rmse.pointwise/rmse.dgp.pointwise)
+colnames(foo.claw) <- c("X","Oracle","NW","ratio")
 ```
+
+```{r clawtable}
+knitr::kable(foo.claw,digits=2,align="rlll")
+```
+
 
 ## Comments
 
