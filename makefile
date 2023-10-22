@@ -2,7 +2,7 @@ all:
 
 	quarto render index.qmd
 	Rscript -e 'knitr::purl("index.qmd")'
-	git add index_files
+	git add index_files index.html
 
 preview:
 
