@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Comments by Jeffrey Racine @ CESG 2023">
-  <meta name="dcterms.date" content="2023-10-22">
+  <meta name="dcterms.date" content="2023-10-23">
   <title>Kernel estimation in regression on vector and function spaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -364,7 +364,7 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 
-  <p class="date">2023-10-22</p>
+  <p class="date">2023-10-23</p>
 </section>
 <section id="project-overview" class="slide level2 center">
 <h2>Project Overview</h2>
@@ -459,7 +459,8 @@ Comments by Jeffrey Racine @ CESG 2023
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ol type="1">
 <li class="fragment"><p>The simulations are extensive but might be improved</p></li>
-<li class="fragment"><p>Bandwidth choice is ISE/IMSE optimal (is this wise? time for a rethink?)</p></li>
+<li class="fragment"><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise” - is this wise? time for a rethink?)</p></li>
+<li class="fragment"><p>Is a fixed bandwidth the best in this setting? What about “locally adaptive” bandwidths?</p></li>
 <li class="fragment"><p>Perhaps the following might be an alternative to the exisitng simulations</p>
 <ol type="a">
 <li class="fragment"><p>run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)</p></li>
@@ -471,7 +472,9 @@ Comments by Jeffrey Racine @ CESG 2023
 </section>
 <section id="catgorical-xinmathbbd1" class="slide level2 center">
 <h2>Catgorical <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
-<p>Oracle &amp; NW <span class="math inline">\(\beta=-1/2\)</span></p>
+<p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
+<p>We implement the “Oracle” esitmator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>The following table shows the “empirical” rate of convergence ($\hat\beta$) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/orderedtable_9351e0a06d85f4e467d150501a0fe9ae">
 <div class="cell-output-display">
 <table>
@@ -506,10 +509,13 @@ Comments by Jeffrey Racine @ CESG 2023
 </table>
 </div>
 </div>
+<p>It appears that the kernel estimator attains the Oracle rate with <strong>discrete regressors</strong> and <strong>data-driven smoothing parameter choice</strong> with a <strong>discrete support kernel function</strong></p>
 </section>
 <section id="continuous-kernel-xinmathbbd1" class="slide level2 center">
 <h2>Continuous Kernel <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
-<p>Oracle &amp; NW <span class="math inline">\(\beta=-1/2\)</span></p>
+<p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
+<p>We implement the “Oracle” esitmator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>The following table shows the “empirical” rate of convergence ($\hat\beta$) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/bierenstable_3f3f0245ac88e4f1bc06d65300b8a0c9">
 <div class="cell-output-display">
 <table>
@@ -544,10 +550,12 @@ Comments by Jeffrey Racine @ CESG 2023
 </table>
 </div>
 </div>
+<p>It appears that the kernel estimator attains the Oracle rate with <strong>discrete regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
 <section id="irrelevant-xinmathbbr1" class="slide level2 center">
 <h2>Irrelevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
-<p>Oracle &amp; NW <span class="math inline">\(\beta=-1/2\)</span></p>
+<p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
+<p>We implement the “Oracle” esitmator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we still expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/irrelevanttable_c58a3a5e88d15258cef2e799d30ef9ee">
 <div class="cell-output-display">
 <table>
@@ -582,10 +590,12 @@ Comments by Jeffrey Racine @ CESG 2023
 </table>
 </div>
 </div>
+<p>It appears that the kernel estimator attains the Oracle rate with <strong>irrelevant</strong> <strong>continuous regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
 <section id="relevant-xinmathbbr1" class="slide level2 center">
 <h2>Relevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
-<p>Oracle <span class="math inline">\(\beta=-1/2\)</span>, NW <span class="math inline">\(\beta=-2/5\)</span></p>
+<p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
+<p>We implement the “Oracle” esitmator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we expect <span class="math inline">\(\beta=-2/5\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuoustable_7c0fee5f8cfdd93fff6d2e1605f33cb6">
 <div class="cell-output-display">
 <table>
@@ -620,11 +630,16 @@ Comments by Jeffrey Racine @ CESG 2023
 </table>
 </div>
 </div>
+<p>It appears that the kernel rate of convergence is slower than the Oracle with <strong>relevant</strong> <strong>continuous regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
-<section id="comments" class="slide level2 center">
-<h2>Comments</h2>
+<section id="comments-trinormal-case" class="slide level2 center">
+<h2>Comments (“trinormal” case)</h2>
+<p>The authors state “The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators.” and that “This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here.”</p>
 
-<img data-src="index_files/figure-revealjs/claw-1.png" width="960" class="r-stretch quarto-figure-center"><div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/clawtable_6c0b3dac8c671b1f175fd7d412a0b766">
+<img data-src="index_files/figure-revealjs/claw-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="comments-cont." class="slide level2 center">
+<h2>Comments Cont.</h2>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/clawtable_6c0b3dac8c671b1f175fd7d412a0b766">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -659,7 +674,7 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 </section>
-<section id="comments-1" class="slide level2 center">
+<section id="comments" class="slide level2 center">
 <h2>Comments</h2>
 <ul>
 <li class="fragment">Figures - mixing <span class="math inline">\(f(x)\)</span> on vertical axis and <span class="math inline">\(F(x)\)</span> in description?</li>

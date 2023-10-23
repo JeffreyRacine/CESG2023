@@ -159,9 +159,11 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 1.  The simulations are extensive but might be improved
 
-2.  Bandwidth choice is ISE/IMSE optimal (is this wise? time for a rethink?)
+2.  Bandwidth choice ("fixed") is ISE/IMSE optimal (i.e., "global" rather than "pointwise" - is this wise? time for a rethink?)
 
-3.  Perhaps the following might be an alternative to the exisitng simulations
+3.  Is a fixed bandwidth the best in this setting? What about "locally adaptive" bandwidths?
+
+4.  Perhaps the following might be an alternative to the exisitng simulations
 
     a.  run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)
 
@@ -173,7 +175,11 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 ## Catgorical $X\in\mathbb{D}^1$
 
-Oracle & NW $\beta=-1/2$
+We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
+
+We implement the "Oracle" esitmator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
+
+The following table shows the "empirical" rate of convergence (\$\\hat\\beta\$) in this case
 
 ```{r ordered}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -228,9 +234,15 @@ colnames(foo.ot) <- c("X","Oracle","NW","ratio")
 knitr::kable(foo.ot,digits=2,align="rlll")
 ```
 
+It appears that the kernel estimator attains the Oracle rate with **discrete regressors** and **data-driven smoothing parameter choice** with a **discrete support kernel function**
+
 ## Continuous Kernel $X\in\mathbb{D}^1$
 
-Oracle & NW $\beta=-1/2$
+We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
+
+We implement the "Oracle" esitmator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
+
+The following table shows the "empirical" rate of convergence (\$\\hat\\beta\$) in this case
 
 ```{r bierens}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -285,9 +297,13 @@ colnames(foo.bt) <- c("X","Oracle","NW","ratio")
 knitr::kable(foo.bt,digits=2,align="rlll")
 ```
 
+It appears that the kernel estimator attains the Oracle rate with **discrete regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
+
 ## Irrelevant $X\in\mathbb{R}^1$
 
-Oracle & NW $\beta=-1/2$
+We consider $Y=\sin(2X)+\epsilon$, where $X\sim U[-3,3]$
+
+We implement the "Oracle" esitmator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we still expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
 
 ```{r irrelevant}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -341,9 +357,13 @@ colnames(foo.it) <- c("X","Oracle","NW","ratio")
 knitr::kable(foo.it,digits=2,align="rlll")
 ```
 
+It appears that the kernel estimator attains the Oracle rate with **irrelevant** **continuous regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
+
 ## Relevant $X\in\mathbb{R}^1$
 
-Oracle $\beta=-1/2$, NW $\beta=-2/5$
+We consider $Y=\sin(2X)+\epsilon$, where $X\sim U[-3,3]$
+
+We implement the "Oracle" esitmator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we expect $\beta=-2/5$, i.e., ${\text RMSE}\propto n^{-2/5}$)
 
 ```{r continuous}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -397,7 +417,11 @@ colnames(foo.ct) <- c("X","Oracle","NW","ratio")
 knitr::kable(foo.ct,digits=2,align="rlll")
 ```
 
-## Comments
+It appears that the kernel rate of convergence is slower than the Oracle with **relevant** **continuous regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
+
+## Comments ("trinormal" case)
+
+The authors state "The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators." and that "This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here."
 
 ```{r claw}
 #| fig.asp=0.75
@@ -506,10 +530,11 @@ foo.claw <- data.frame(X.pred,rmse.dgp.pointwise,rmse.pointwise,rmse.pointwise/r
 colnames(foo.claw) <- c("X","Oracle","NW","ratio")
 ```
 
+## Comments Cont.
+
 ```{r clawtable}
 knitr::kable(foo.claw,digits=2,align="rlll")
 ```
-
 
 ## Comments
 
