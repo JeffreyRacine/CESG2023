@@ -127,7 +127,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 ## What do we currently know ($X\in\mathbb{R}^1$)?
 
--   When $X$ has continuous support by is *unrelated* to $Y$, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
+-   When $X$ has continuous support but is *unrelated* to $Y$, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
 -   This can be attained when using, e.g., cross-validation to select bandwidths that select $h\to\infty$ with high probability when using *continuous* kernel functions [@HALL_LI_RACINE:2007]
 
@@ -151,7 +151,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 -   Otherwise, when kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence
 
--   Using an appropriate bandwidth, for $X\in\mathbb{R}^1$ ${\text RMSE}\propto n^{-2/5}$
+-   Using an appropriate bandwidth, for $X\in\mathbb{R}^1$, it is well-established that ${\text RMSE}\propto n^{-2/5}$ using second-order kernel functions
 
 -   The authors consider, instead, cases where the convergence rate, when using *continuous* kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of $X$
 
@@ -242,7 +242,7 @@ We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
 
 We implement the "Oracle" esitmator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
 
-The following table shows the "empirical" rate of convergence (\$\\hat\\beta\$) in this case
+The following table shows the "empirical" rate of convergence ($\hat\beta$) in this case
 
 ```{r bierens}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
