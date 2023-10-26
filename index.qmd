@@ -18,7 +18,7 @@ format:
             }
           };
           </script>
-    incremental: true
+    incremental: false
     link-external-newwindow: true
     ## multiplex: true will create two html files:
     ## 1. index.html: This is the file you should publish online and that your
@@ -103,7 +103,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
     iii. Demonstrating that they can weaken usual regularity conditions assumed for such analysis
 
-## What do we currently know ($X\in\mathbb{D}^1$)?
+## What do we know ($X\in\mathbb{D}^1$)?
 
 -   When $X$ has discrete support, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)$
 
@@ -125,7 +125,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
     ```
 
-## What do we currently know ($X\in\mathbb{R}^1$)?
+## What do we know ($X\in\mathbb{R}^1$)?
 
 -   When $X$ has continuous support but is *unrelated* to $Y$, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
@@ -147,7 +147,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
     ```
 
-## What do we currently know ($X\in\mathbb{R}^1$)?
+## What do we know ($X\in\mathbb{R}^1$)?
 
 -   Otherwise, when kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence
 
@@ -163,7 +163,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 3.  Is a fixed bandwidth the best in this setting? What about "locally adaptive" bandwidths?
 
-4.  Perhaps the following might be an alternative to the exisitng simulations
+4.  Perhaps the following might be an alternative to the existing simulations
 
     a.  run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)
 
@@ -173,11 +173,11 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
     d.  regress log(RMSE) on log(n) (the coefficient on log(n) will be the empirical rate of convergence, i.e., if ${\text RMSE} =\delta n^{-1/2}$ then $\log({\text RMSE}) =\alpha+\beta\log(n)$ and $\beta$ can be estimated)
 
-## Catgorical $X\in\mathbb{D}^1$
+## Catgorical Kernel, Relevant $X\in\mathbb{D}^1$
 
 We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
 
-We implement the "Oracle" esitmator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
+We implement the "Oracle" estimator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
 
 The following table shows the "empirical" rate of convergence (\$\\hat\\beta\$) in this case
 
@@ -236,11 +236,11 @@ knitr::kable(foo.ot,digits=2,align="rlll")
 
 It appears that the kernel estimator attains the Oracle rate with **discrete regressors** and **data-driven smoothing parameter choice** with a **discrete support kernel function**
 
-## Continuous Kernel $X\in\mathbb{D}^1$
+## Continuous Kernel, Relevant $X\in\mathbb{D}^1$
 
 We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
 
-We implement the "Oracle" esitmator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
+We implement the "Oracle" estimator and the kernel estimator (for both we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
 
 The following table shows the "empirical" rate of convergence ($\hat\beta$) in this case
 
@@ -299,11 +299,11 @@ knitr::kable(foo.bt,digits=2,align="rlll")
 
 It appears that the kernel estimator attains the Oracle rate with **discrete regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
 
-## Irrelevant $X\in\mathbb{R}^1$
+## Continuous Kernel, Irrelevant $X\in\mathbb{R}^1$
 
 We consider $Y=\sin(2X)+\epsilon$, where $X\sim U[-3,3]$
 
-We implement the "Oracle" esitmator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we still expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
+We implement the "Oracle" estimator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we still expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$)
 
 ```{r irrelevant}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -359,11 +359,11 @@ knitr::kable(foo.it,digits=2,align="rlll")
 
 It appears that the kernel estimator attains the Oracle rate with **irrelevant** **continuous regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
 
-## Relevant $X\in\mathbb{R}^1$
+## Continuous Kernel, Relevant $X\in\mathbb{R}^1$
 
 We consider $Y=\sin(2X)+\epsilon$, where $X\sim U[-3,3]$
 
-We implement the "Oracle" esitmator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we expect $\beta=-2/5$, i.e., ${\text RMSE}\propto n^{-2/5}$)
+We implement the "Oracle" estimator and the kernel estimator (for the Oracle we expect $\beta=-1/2$, i.e., ${\text RMSE}\propto n^{-1/2}$, for the kernel we expect $\beta=-2/5$, i.e., ${\text RMSE}\propto n^{-2/5}$)
 
 ```{r continuous}
 ## Write a monte carlo simulation that compute the pointwise RMSE of the fitted
@@ -419,7 +419,7 @@ knitr::kable(foo.ct,digits=2,align="rlll")
 
 It appears that the kernel rate of convergence is slower than the Oracle with **relevant** **continuous regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
 
-## Comments ("trinormal" case)
+## Simlations in KSZ-W (the "trinormal" case)
 
 The authors state "The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators." and that "This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here."
 
@@ -530,14 +530,59 @@ foo.claw <- data.frame(X.pred,rmse.dgp.pointwise,rmse.pointwise,rmse.pointwise/r
 colnames(foo.claw) <- c("X","Oracle","NW","ratio")
 ```
 
-## Comments Cont.
+## Simlations in KSZ-W (the "trinormal" case)
+
+The KSZ-W paper considers the case where $X$ is trinormal, but results are reported for a fixed $n$
+
+The RMSE varies across the support for a fixed $n$, but although the authors say the simulations inform us about the rate of convergence, they do not report the RMSE *rate*
+
+Perhaps results similar to that below would help (perhaps at the same uniform grid the authors use, or perhaps simply at a coarse grid of points
 
 ```{r clawtable}
 knitr::kable(foo.claw,digits=2,align="rlll")
 ```
 
-## Comments
+## Simulations in KSZ-W (the "trinormal" case)
 
--   Figures - mixing $f(x)$ on vertical axis and $F(x)$ in description?
+To conduct the suggested exercise, the code is as follows:
+
+```{r illustrative,echo=TRUE,eval=FALSE}
+## Monte Carlo reps, vector of n, vector of X.pred
+M <- 1000
+n.vec <- c(50,100,200,400,800,1600,3200,6400,12800)
+X.pred <- c(-.767,-(.767-0.8),-(.767-1.2))
+## Prediction data frame
+newdata <- data.frame(X=X.pred)
+## Storage arrays
+fitted.array.dgp <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+fitted.array <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+## Monte Carlo
+for(j in 1:length(n.vec)) {
+  for(i in 1:M) {
+    X <- rfxmsd(n.vec[j])
+    dgp <- sin(2.5*X)
+    Y <- dgp + rnorm(n.vec[j],sd=sd(dgp))
+    ghat.dgp <- lm(Y~sin(2.5*X))
+    fitted.array.dgp[j,i,] <- predict(ghat.dgp,newdata=newdata)
+    ghat.nw <- npreg(Y~X,ckertype="epanechnikov")
+    fitted.array[j,i,] <- predict(ghat.nw,newdata=newdata)
+  }
+}
+## Compute pointwise RMSE at each support point for each n
+rmse.dgp <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+rmse <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+for(j in 1:length(n.vec)) {
+  rmse.dgp[j,] <- sqrt(colMeans(sweep(fitted.array.dgp[j,,],2,dgp.pred)^2))
+  rmse[j,] <- sqrt(colMeans(sweep(fitted.array[j,,],2,dgp.pred)^2))
+}
+## Compute RMSE rate
+rmse.dgp.pointwise <- numeric()
+rmse.pointwise <- numeric()
+for(i in 1:length(X.pred)) {
+  rmse.dgp.pointwise[i] <- coef(ltsReg(log(rmse.dgp[,i])~log(n.vec)))[2]
+  rmse.pointwise[i] <- coef(ltsReg(log(rmse[,i])~log(n.vec)))[2]
+}
+
+```
 
 ## References

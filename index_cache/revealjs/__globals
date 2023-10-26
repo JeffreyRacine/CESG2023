@@ -12,3 +12,4 @@ continuoustable	::	foo.ct
 comments	[<-	^	==	~	$	c	dnorm	fitted	hist	legend	length	lines	lm	npreg	numeric	par	plot	range	return	rnorm	sample	sd	seq	set.seed	sin	sort
 claw	[<-	^	==	~	$	abline	array	c	coef	colMeans	colnames<-	data.frame	dnorm	fitted	for	hist	legend	length	library	lines	lm	ltsReg	M	matrix	npreg	numeric	options	par	plot	predict	range	return	rnorm	sample	sd	seq	set.seed	sin	sort	sqrt	sweep
 clawtable	::	foo.claw
+illustrative	[<-	^	~	array	c	coef	colMeans	data.frame	dgp.pred	for	length	lm	ltsReg	matrix	npreg	numeric	predict	rfxmsd	rnorm	sd	sin	sqrt	sweep

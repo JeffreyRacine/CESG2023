@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Comments by Jeffrey Racine @ CESG 2023">
-  <meta name="dcterms.date" content="2023-10-23">
+  <meta name="dcterms.date" content="2023-10-25">
   <title>Kernel estimation in regression on vector and function spaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -364,25 +429,25 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 
-  <p class="date">2023-10-23</p>
+  <p class="date">2023-10-25</p>
 </section>
 <section id="project-overview" class="slide level2 center">
 <h2>Project Overview</h2>
 <ul>
-<li class="fragment"><p>The authors consider kernel-weighted nonparametric regression when the distribution of the regressors may not possess absolute continuity with respect to the Lebesgue measure</p></li>
-<li class="fragment"><p>They demonstrate that convergence rates are influenced non-trivially by the underlying distribution</p></li>
-<li class="fragment"><p>In the case of absolutely continuous measures, their approach weakens the usual regularity conditions</p></li>
-<li class="fragment"><p>They extend their analysis to encompass kernel regression with multiple functional regressors</p></li>
+<li><p>The authors consider kernel-weighted nonparametric regression when the distribution of the regressors may not possess absolute continuity with respect to the Lebesgue measure</p></li>
+<li><p>They demonstrate that convergence rates are influenced non-trivially by the underlying distribution</p></li>
+<li><p>In the case of absolutely continuous measures, their approach weakens the usual regularity conditions</p></li>
+<li><p>They extend their analysis to encompass kernel regression with multiple functional regressors</p></li>
 </ul>
 </section>
 <section id="setting" class="slide level2 center">
 <h2>Setting</h2>
 <ul>
-<li class="fragment"><p>The authors consider a smooth nonparametric model with additive errors <span class="math display">\[Y=m(X)+u,\qquad E(u|X)=0\]</span></p></li>
-<li class="fragment"><p><span class="math inline">\(X\)</span> may belong to a function space, e.g., continuous functions on a compact set, or a more general metric space</p></li>
-<li class="fragment"><p><span class="math inline">\(X\)</span> does not necessarily have to be a vector or a function</p></li>
-<li class="fragment"><p><span class="math inline">\(X\)</span> is supported on some domain in a vector or metric, semi-metric space denoted as <span class="math inline">\(\Xi\)</span></p></li>
-<li class="fragment"><p>The authors focus is on the generality of assumptions on the underlying distribution of <span class="math inline">\(X\)</span>, i.e., on <span class="math inline">\(F_X(x)\)</span></p></li>
+<li><p>The authors consider a smooth nonparametric model with additive errors <span class="math display">\[Y=m(X)+u,\qquad E(u|X)=0\]</span></p></li>
+<li><p><span class="math inline">\(X\)</span> may belong to a function space, e.g., continuous functions on a compact set, or a more general metric space</p></li>
+<li><p><span class="math inline">\(X\)</span> does not necessarily have to be a vector or a function</p></li>
+<li><p><span class="math inline">\(X\)</span> is supported on some domain in a vector or metric, semi-metric space denoted as <span class="math inline">\(\Xi\)</span></p></li>
+<li><p>The authors focus is on the generality of assumptions on the underlying distribution of <span class="math inline">\(X\)</span>, i.e., on <span class="math inline">\(F_X(x)\)</span></p></li>
 </ul>
 <aside class="notes">
 <p>The fourteenth letter in the Greek alphabet, <span class="math inline">\(\Xi\)</span> is pronounced “kai”</p>
@@ -401,25 +466,25 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="setting-cont." class="slide level2 center">
 <h2>Setting Cont.</h2>
 <ul>
-<li class="fragment"><p>The authors consider three cases:</p>
+<li><p>The authors consider three cases:</p>
 <ol type="i">
-<li class="fragment"><p><span class="math inline">\(\Xi=\mathbb{R}^q\)</span> (standard kernel regression)</p></li>
-<li class="fragment"><p><span class="math inline">\(\Xi=\Xi^1\)</span> (univariate metric space, i.e., functional regression)</p></li>
-<li class="fragment"><p><span class="math inline">\(\Xi=\Xi^q=\Xi^1\times\cdots\times\Xi^1\)</span> (product metric space)</p></li>
+<li><p><span class="math inline">\(\Xi=\mathbb{R}^q\)</span> (standard kernel regression)</p></li>
+<li><p><span class="math inline">\(\Xi=\Xi^1\)</span> (univariate metric space, i.e., functional regression)</p></li>
+<li><p><span class="math inline">\(\Xi=\Xi^q=\Xi^1\times\cdots\times\Xi^1\)</span> (product metric space)</p></li>
 </ol></li>
-<li class="fragment"><p>The authors contribute to the literature by:</p>
+<li><p>The authors contribute to the literature by:</p>
 <ol type="i">
-<li class="fragment"><p>Establishing a novel CLT</p></li>
-<li class="fragment"><p>Demonstrating that convergence rates are affected by the underlying distribution</p></li>
-<li class="fragment"><p>Demonstrating that they can weaken usual regularity conditions assumed for such analysis</p></li>
+<li><p>Establishing a novel CLT</p></li>
+<li><p>Demonstrating that convergence rates are affected by the underlying distribution</p></li>
+<li><p>Demonstrating that they can weaken usual regularity conditions assumed for such analysis</p></li>
 </ol></li>
 </ul>
 </section>
-<section id="what-do-we-currently-know-xinmathbbd1" class="slide level2 center">
-<h2>What do we currently know (<span class="math inline">\(X\in\mathbb{D}^1\)</span>)?</h2>
+<section id="what-do-we-know-xinmathbbd1" class="slide level2 center">
+<h2>What do we know (<span class="math inline">\(X\in\mathbb{D}^1\)</span>)?</h2>
 <ul>
-<li class="fragment"><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
-<li class="fragment"><p>This is achieved by using, e.g., cross-validation to select smoothing parameters when using <em>categorical</em> kernel functions <span class="citation" data-cites="LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Li and Racine 2007</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
+<li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
+<li><p>This is achieved by using, e.g., cross-validation to select smoothing parameters when using <em>categorical</em> kernel functions <span class="citation" data-cites="LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Li and Racine 2007</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/categoricalkernel_0baddb0a7fb2f9f5942fe15dee47d78b">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -431,11 +496,11 @@ Comments by Jeffrey Racine @ CESG 2023
 </div></li>
 </ul>
 </section>
-<section id="what-do-we-currently-know-xinmathbbr1" class="slide level2 center">
-<h2>What do we currently know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
+<section id="what-do-we-know-xinmathbbr1" class="slide level2 center">
+<h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li class="fragment"><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
-<li class="fragment"><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
+<li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
+<li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_fb59e5b6bd98dc745fb648b94c901113">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -447,33 +512,33 @@ Comments by Jeffrey Racine @ CESG 2023
 </div></li>
 </ul>
 </section>
-<section id="what-do-we-currently-know-xinmathbbr1-1" class="slide level2 center">
-<h2>What do we currently know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
+<section id="what-do-we-know-xinmathbbr1-1" class="slide level2 center">
+<h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li class="fragment"><p>Otherwise, when kernel smoothing under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence</p></li>
-<li class="fragment"><p>Using an appropriate bandwidth, for <span class="math inline">\(X\in\mathbb{R}^1\)</span>, it is well-established that <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span> using second-order kernel functions</p></li>
-<li class="fragment"><p>The authors consider, instead, cases where the convergence rate, when using <em>continuous</em> kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of <span class="math inline">\(X\)</span></p></li>
+<li><p>Otherwise, when kernel smoothing under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence</p></li>
+<li><p>Using an appropriate bandwidth, for <span class="math inline">\(X\in\mathbb{R}^1\)</span>, it is well-established that <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span> using second-order kernel functions</p></li>
+<li><p>The authors consider, instead, cases where the convergence rate, when using <em>continuous</em> kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of <span class="math inline">\(X\)</span></p></li>
 </ul>
 </section>
 <section id="assessing-pointwise-rates-l2" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ol type="1">
-<li class="fragment"><p>The simulations are extensive but might be improved</p></li>
-<li class="fragment"><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise” - is this wise? time for a rethink?)</p></li>
-<li class="fragment"><p>Is a fixed bandwidth the best in this setting? What about “locally adaptive” bandwidths?</p></li>
-<li class="fragment"><p>Perhaps the following might be an alternative to the exisitng simulations</p>
+<li><p>The simulations are extensive but might be improved</p></li>
+<li><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise” - is this wise? time for a rethink?)</p></li>
+<li><p>Is a fixed bandwidth the best in this setting? What about “locally adaptive” bandwidths?</p></li>
+<li><p>Perhaps the following might be an alternative to the existing simulations</p>
 <ol type="a">
-<li class="fragment"><p>run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)</p></li>
-<li class="fragment"><p>consider a range of sample sizes</p></li>
-<li class="fragment"><p>for each replication record the pointwise RMSE</p></li>
-<li class="fragment"><p>regress log(RMSE) on log(n) (the coefficient on log(n) will be the empirical rate of convergence, i.e., if <span class="math inline">\({\text RMSE} =\delta n^{-1/2}\)</span> then <span class="math inline">\(\log({\text RMSE}) =\alpha+\beta\log(n)\)</span> and <span class="math inline">\(\beta\)</span> can be estimated)</p></li>
+<li><p>run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)</p></li>
+<li><p>consider a range of sample sizes</p></li>
+<li><p>for each replication record the pointwise RMSE</p></li>
+<li><p>regress log(RMSE) on log(n) (the coefficient on log(n) will be the empirical rate of convergence, i.e., if <span class="math inline">\({\text RMSE} =\delta n^{-1/2}\)</span> then <span class="math inline">\(\log({\text RMSE}) =\alpha+\beta\log(n)\)</span> and <span class="math inline">\(\beta\)</span> can be estimated)</p></li>
 </ol></li>
 </ol>
 </section>
-<section id="catgorical-xinmathbbd1" class="slide level2 center">
-<h2>Catgorical <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
+<section id="catgorical-kernel-relevant-xinmathbbd1" class="slide level2 center">
+<h2>Catgorical Kernel, Relevant <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
-<p>We implement the “Oracle” esitmator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>We implement the “Oracle” estimator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
 <p>The following table shows the “empirical” rate of convergence ($\hat\beta$) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/orderedtable_9351e0a06d85f4e467d150501a0fe9ae">
 <div class="cell-output-display">
@@ -511,10 +576,10 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 <p>It appears that the kernel estimator attains the Oracle rate with <strong>discrete regressors</strong> and <strong>data-driven smoothing parameter choice</strong> with a <strong>discrete support kernel function</strong></p>
 </section>
-<section id="continuous-kernel-xinmathbbd1" class="slide level2 center">
-<h2>Continuous Kernel <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
+<section id="continuous-kernel-relevant-xinmathbbd1" class="slide level2 center">
+<h2>Continuous Kernel, Relevant <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
-<p>We implement the “Oracle” esitmator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>We implement the “Oracle” estimator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
 <p>The following table shows the “empirical” rate of convergence (<span class="math inline">\(\hat\beta\)</span>) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/bierenstable_3f3f0245ac88e4f1bc06d65300b8a0c9">
 <div class="cell-output-display">
@@ -552,10 +617,10 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 <p>It appears that the kernel estimator attains the Oracle rate with <strong>discrete regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
-<section id="irrelevant-xinmathbbr1" class="slide level2 center">
-<h2>Irrelevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
+<section id="continuous-kernel-irrelevant-xinmathbbr1" class="slide level2 center">
+<h2>Continuous Kernel, Irrelevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
-<p>We implement the “Oracle” esitmator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we still expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>We implement the “Oracle” estimator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we still expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/irrelevanttable_c58a3a5e88d15258cef2e799d30ef9ee">
 <div class="cell-output-display">
 <table>
@@ -592,10 +657,10 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 <p>It appears that the kernel estimator attains the Oracle rate with <strong>irrelevant</strong> <strong>continuous regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
-<section id="relevant-xinmathbbr1" class="slide level2 center">
-<h2>Relevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
+<section id="continuous-kernel-relevant-xinmathbbr1" class="slide level2 center">
+<h2>Continuous Kernel, Relevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
-<p>We implement the “Oracle” esitmator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we expect <span class="math inline">\(\beta=-2/5\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span>)</p>
+<p>We implement the “Oracle” estimator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we expect <span class="math inline">\(\beta=-2/5\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuoustable_7c0fee5f8cfdd93fff6d2e1605f33cb6">
 <div class="cell-output-display">
 <table>
@@ -632,13 +697,16 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 <p>It appears that the kernel rate of convergence is slower than the Oracle with <strong>relevant</strong> <strong>continuous regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
-<section id="comments-trinormal-case" class="slide level2 center">
-<h2>Comments (“trinormal” case)</h2>
+<section id="simlations-in-ksz-w-the-trinormal-case" class="slide level2 center">
+<h2>Simlations in KSZ-W (the “trinormal” case)</h2>
 <p>The authors state “The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators.” and that “This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here.”</p>
 
 <img data-src="index_files/figure-revealjs/claw-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="comments-cont." class="slide level2 center">
-<h2>Comments Cont.</h2>
+<section id="simlations-in-ksz-w-the-trinormal-case-1" class="slide level2 center">
+<h2>Simlations in KSZ-W (the “trinormal” case)</h2>
+<p>The KSZ-W paper considers the case where <span class="math inline">\(X\)</span> is trinormal, but results are reported for a fixed <span class="math inline">\(n\)</span></p>
+<p>The RMSE varies across the support for a fixed <span class="math inline">\(n\)</span>, but although the authors say the simulations inform us about the rate of convergence, they do not report the RMSE <em>rate</em></p>
+<p>Perhaps results similar to that below would help (perhaps at the same uniform grid the authors use, or perhaps simply at a coarse grid of points</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/clawtable_6c0b3dac8c671b1f175fd7d412a0b766">
 <div class="cell-output-display">
 <table>
@@ -674,11 +742,46 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 </section>
-<section id="comments" class="slide level2 center">
-<h2>Comments</h2>
-<ul>
-<li class="fragment">Figures - mixing <span class="math inline">\(f(x)\)</span> on vertical axis and <span class="math inline">\(F(x)\)</span> in description?</li>
-</ul>
+<section id="simulations-in-ksz-w-the-trinormal-case" class="slide level2 center">
+<h2>Simulations in KSZ-W (the “trinormal” case)</h2>
+<p>To conduct the suggested exercise, the code is as follows:</p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/illustrative_d3d4fd35ecbfcaf18f3f38de69643bd8">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="do">## Monte Carlo reps, vector of n, vector of X.pred</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>M <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>n.vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">400</span>,<span class="dv">800</span>,<span class="dv">1600</span>,<span class="dv">3200</span>,<span class="dv">6400</span>,<span class="dv">12800</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>X.pred <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">767</span>,<span class="sc">-</span>(.<span class="dv">767</span><span class="fl">-0.8</span>),<span class="sc">-</span>(.<span class="dv">767</span><span class="fl">-1.2</span>))</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="do">## Prediction data frame</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X=</span>X.pred)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="do">## Storage arrays</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>fitted.array.dgp <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="fu">length</span>(n.vec),M,<span class="fu">length</span>(X.pred)))</span>
+<span id="cb1-9"><a href="#cb1-9"></a>fitted.array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="cn">NA</span>,<span class="at">dim=</span><span class="fu">c</span>(<span class="fu">length</span>(n.vec),M,<span class="fu">length</span>(X.pred)))</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="do">## Monte Carlo</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n.vec)) {</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    X <span class="ot">&lt;-</span> <span class="fu">rfxmsd</span>(n.vec[j])</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    dgp <span class="ot">&lt;-</span> <span class="fu">sin</span>(<span class="fl">2.5</span><span class="sc">*</span>X)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    Y <span class="ot">&lt;-</span> dgp <span class="sc">+</span> <span class="fu">rnorm</span>(n.vec[j],<span class="at">sd=</span><span class="fu">sd</span>(dgp))</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    ghat.dgp <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span><span class="fu">sin</span>(<span class="fl">2.5</span><span class="sc">*</span>X))</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    fitted.array.dgp[j,i,] <span class="ot">&lt;-</span> <span class="fu">predict</span>(ghat.dgp,<span class="at">newdata=</span>newdata)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    ghat.nw <span class="ot">&lt;-</span> <span class="fu">npreg</span>(Y<span class="sc">~</span>X,<span class="at">ckertype=</span><span class="st">"epanechnikov"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    fitted.array[j,i,] <span class="ot">&lt;-</span> <span class="fu">predict</span>(ghat.nw,<span class="at">newdata=</span>newdata)</span>
+<span id="cb1-20"><a href="#cb1-20"></a>  }</span>
+<span id="cb1-21"><a href="#cb1-21"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="do">## Compute pointwise RMSE at each support point for each n</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>rmse.dgp <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">length</span>(n.vec),<span class="at">ncol=</span><span class="fu">length</span>(X.pred))</span>
+<span id="cb1-24"><a href="#cb1-24"></a>rmse <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">length</span>(n.vec),<span class="at">ncol=</span><span class="fu">length</span>(X.pred))</span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(n.vec)) {</span>
+<span id="cb1-26"><a href="#cb1-26"></a>  rmse.dgp[j,] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">colMeans</span>(<span class="fu">sweep</span>(fitted.array.dgp[j,,],<span class="dv">2</span>,dgp.pred)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-27"><a href="#cb1-27"></a>  rmse[j,] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">colMeans</span>(<span class="fu">sweep</span>(fitted.array[j,,],<span class="dv">2</span>,dgp.pred)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-28"><a href="#cb1-28"></a>}</span>
+<span id="cb1-29"><a href="#cb1-29"></a><span class="do">## Compute RMSE rate</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>rmse.dgp.pointwise <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb1-31"><a href="#cb1-31"></a>rmse.pointwise <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(X.pred)) {</span>
+<span id="cb1-33"><a href="#cb1-33"></a>  rmse.dgp.pointwise[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ltsReg</span>(<span class="fu">log</span>(rmse.dgp[,i])<span class="sc">~</span><span class="fu">log</span>(n.vec)))[<span class="dv">2</span>]</span>
+<span id="cb1-34"><a href="#cb1-34"></a>  rmse.pointwise[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">ltsReg</span>(<span class="fu">log</span>(rmse[,i])<span class="sc">~</span><span class="fu">log</span>(n.vec)))[<span class="dv">2</span>]</span>
+<span id="cb1-35"><a href="#cb1-35"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
