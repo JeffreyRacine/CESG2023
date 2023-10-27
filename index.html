@@ -501,7 +501,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <ul>
 <li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
 <li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_bae932d933fc537cccf3fb0d5d949dfb">
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_0e19f258f2e43ddd55cfa482aca8678a">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -517,7 +517,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <ul>
 <li><p>When <span class="math inline">\(X\)</span> has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
 <li><p>This can be attained when using, e.g., cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span></p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernelglp_0f43147486ddc7085d5877b5b54d9048">
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernelglp_83cce0379d3a9a9b7be631467180e0c6">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -538,24 +538,37 @@ Comments by Jeffrey Racine @ CESG 2023
 </section>
 <section id="assessing-pointwise-rates-l2" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
-<ol type="1">
+<ul>
+<li><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise”)</p></li>
+<li><p>Is a fixed bandwidth the best in this setting?</p></li>
+<li><p>What about “locally adaptive” bandwidths?</p></li>
 <li><p>The simulations are extensive but might be improved</p></li>
-<li><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise” - is this wise? time for a rethink?)</p></li>
-<li><p>Is a fixed bandwidth the best in this setting? What about “locally adaptive” bandwidths?</p></li>
+<li><p>I am not sure I learn anything about <em>rates</em> from the simulations</p>
+<ul>
+<li><p>They present figures, for a given <span class="math inline">\(n\)</span>, that reveal how <em>pointwise</em> RMSE varies over <span class="math inline">\(X\)</span></p></li>
+<li><p>I would be more interested in how <em>pointwise</em> RMSE varies over <span class="math inline">\(n\)</span> (i.e., the rate of convergence)</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="assessing-pointwise-rates-l2-1" class="slide level2 center">
+<h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
+<ul>
 <li><p>Perhaps the following might be an alternative to the existing simulations</p>
-<ol type="a">
+<ul>
 <li><p>run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)</p></li>
 <li><p>consider a range of sample sizes</p></li>
-<li><p>for each replication record the pointwise RMSE</p></li>
-<li><p>regress log(RMSE) on log(n) (the coefficient on log(n) will be the empirical rate of convergence, i.e., if <span class="math inline">\({\text RMSE} =\delta n^{-1/2}\)</span> then <span class="math inline">\(\log({\text RMSE}) =\alpha+\beta\log(n)\)</span> and <span class="math inline">\(\beta\)</span> can be estimated)</p></li>
-</ol></li>
-</ol>
+<li><p>for each Monte Carlo replication record the pointwise RMSE</p></li>
+<li><p>finally, regress <span class="math inline">\(\log({\text RMSE})\)</span> on <span class="math inline">\(\log(n)\)</span> and record the coefficient on <span class="math inline">\(\log(n)\)</span></p></li>
+</ul></li>
+<li><p>The coefficient on <span class="math inline">\(\log(n)\)</span> will be the empirical rate of convergence</p></li>
+<li><p>For example, if <span class="math inline">\({\text RMSE} \propto n^{-2/5}\)</span> then <span class="math inline">\(\log({\text RMSE}) =\alpha+\beta\log(n)\)</span> and <span class="math inline">\(\beta\)</span> can be estimated and should be close to <span class="math inline">\(-0.40\)</span></p></li>
+</ul>
 </section>
 <section id="categorical-kernel-relevant-xinmathbbd1" class="slide level2 center">
 <h2>Categorical Kernel, Relevant <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
 <p>We implement the “Oracle” estimator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
-<p>The following table shows the “empirical” rate of convergence ($\hat\beta$) in this case</p>
+<p>The following table shows the “empirical” rate of convergence (<span class="math inline">\(\hat\beta\)</span>) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/orderedtable_9351e0a06d85f4e467d150501a0fe9ae">
 <div class="cell-output-display">
 <table>
@@ -637,6 +650,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <h2>Continuous Kernel, Irrelevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
 <p>We implement the “Oracle” estimator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we still expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
+<p>The following table shows the “empirical” rate of convergence (<span class="math inline">\(\hat\beta\)</span>) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/irrelevanttable_c58a3a5e88d15258cef2e799d30ef9ee">
 <div class="cell-output-display">
 <table>
@@ -677,6 +691,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <h2>Continuous Kernel, Relevant <span class="math inline">\(X\in\mathbb{R}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\sim U[-3,3]\)</span></p>
 <p>We implement the “Oracle” estimator and the kernel estimator (for the Oracle we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>, for the kernel we expect <span class="math inline">\(\beta=-2/5\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span>)</p>
+<p>The following table shows the “empirical” rate of convergence (<span class="math inline">\(\hat\beta\)</span>) in this case</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuoustable_7c0fee5f8cfdd93fff6d2e1605f33cb6">
 <div class="cell-output-display">
 <table>

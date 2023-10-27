@@ -27,7 +27,7 @@ legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
 ## ----continuouskernel---------------------------------------------------------
 #| out.width = "75%"
 set.seed(42)    
-n <- 100
+n <- 1000
 X <- sort(runif(n))
 dgp <- rep(1,n)
 Y <- dgp + rnorm(n)
@@ -45,14 +45,14 @@ legend("topleft",c("Oracle","NP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
 library(crs)
 options(crs.messages=FALSE)
 set.seed(42)    
-n <- 500
+n <- 1000
 X <- sort(runif(n))
 dgp <- sin(2*pi*X)
-Y <- dgp + rnorm(n,sd=.25*sd(dgp))
+Y <- dgp + rnorm(n,sd=.5*sd(dgp))
 plot(X,Y,cex=.25,col="grey")
 ghat.dgp <- lm(Y~dgp)
 lines(X,fitted(ghat.dgp),col=2,lty=1)
-ghat.glp <- npglpreg(Y~X)
+ghat.glp <- npglpreg(Y~X,ckertype="epanechnikov")
 lines(X,fitted(ghat.glp),col=3,lty=2,lwd=2)
 lines(X,dgp,col=4,lty=3,lwd=2)
 legend("topleft",c("Oracle","NP-GLP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
