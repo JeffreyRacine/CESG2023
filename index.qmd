@@ -8,7 +8,7 @@ format:
     background-transition: fade
     center: true
     css: custom.css
-    footer: "https://jeffreyracine.github.io/CESG2023 | J. Racine"
+    footer: "<a href='https://jeffreyracine.github.io/CESG2023'>jeffreyracine.github.io/CESG2023</a> | <a href='https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide'>Translate</a>"
     html-math-method: mathjax
     include-in-header:
       - text: |
@@ -59,6 +59,63 @@ library(np)
 options(np.tree=TRUE,np.messages=FALSE)
 M <- 1000
 ```
+
+## Slide Pro-Tips
+
+::: {.nonincremental}
+
+- Link to slides - <a href="https://jeffreyracine.github.io/CESG2023">jeffreyracine.github.io/CESG2023</a> (case sensitive, <a href="https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Translate</a>)
+
+- View **full screen** by pressing the F key (press the Esc key to revert)
+
+- Access **navigation menu** by pressing the M key (click X in navigation menu to close)
+
+- **Advance** using arrow keys
+
+- **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
+
+- **Export to a PDF** by pressing the E key (wait a few seconds, then print [or print using system dialog], enable landscape layout, then save as PDF - press the E key to revert)
+
+- Enable drawing tools - chalk **board** by pressing the B key (B to revert), notes **canvas** by pressing the C key (C to revert), press the Del key to erase, press the D key to **download drawings**
+
+:::
+
+::: {.notes}
+Encourage participants to print/save a PDF copy of the slides as there is no guarantee that this material will be there when they realize it might be useful
+:::
+
+
+## Slide Pro-Tips
+
+::: {.nonincremental}
+
+- Link to slides - <a href="https://jeffreyracine.github.io/CESG2023">jeffreyracine.github.io/CESG2023</a> (case sensitive, <a href="https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Google Translate</a>)
+
+- View **full screen** by pressing the F key (press the Esc key to revert)
+
+- Access **navigation menu** by pressing the M key (click X in navigation menu to close)
+
+- **Advance** using arrow keys
+
+- **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
+
+  <!--
+
+  - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio
+
+  -->
+
+- **Export to a PDF** by pressing the E key (wait a few seconds, then print [or print using system dialog], enable landscape layout, then save as PDF - press the E key to revert)
+
+- Enable drawing tools - chalk **board** by pressing the B key (B to revert), notes **canvas** by pressing the C key (C to revert), press the Del key to erase, press the D key to **download drawings**
+
+:::
+
+::: {.notes}
+Encourage participants to print/save a PDF copy of the slides as there is no guarantee that this material will be there when they realize it might be useful
+:::
+
+
 
 ## Project Overview
 
