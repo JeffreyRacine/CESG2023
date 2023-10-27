@@ -131,7 +131,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 -   When $X$ has discrete support, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)$
 
--   This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters with *categorical* kernel functions [@LI_OUYANG_RACINE:2009] or *continuous* kernel functions [@BIERENS:1983]
+-   This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters that $\to0$ as $n\to\infty$ with *categorical* kernel functions [@LI_OUYANG_RACINE:2009] or *continuous* kernel functions [@BIERENS:1983]
 
     ```{r categoricalkernel}
     #| out.width = "75%"
@@ -153,6 +153,8 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 ::: notes
 The authors consider point mass, i.e., discrete support, distributions for $X$
+
+This holds (Bierens) when bandwidths shrink at a very fast rate (much faster than for the typical case)
 :::
 
 ## What do we know ($X\in\mathbb{R}^1$)?
@@ -240,7 +242,7 @@ The authors consider only the local constant estimator where $h\to0$ as $n\to\in
 -   In particular, I am not sure I gleaned very much about *rates* from the simulations
 
     -   They present figures, for a given $n$, that reveal how *pointwise* RMSE varies over $X$
-    
+
     -   But, e.g., the *pointwise* bias for the local constant estimator of $g(x)=E(Y|X=x)$ using the kernel functions the authors adopt can be shown to be $\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2$ (and is $h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2$ for the local linear estimator), which varies over $X$
 
     -   I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence), perhaps others might be as well

@@ -513,7 +513,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{D}^1\)</span>)?</h2>
 <ul>
 <li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
-<li><p>This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters with <em>categorical</em> kernel functions <span class="citation" data-cites="LI_OUYANG_RACINE:2009">(<a href="#/references" role="doc-biblioref" onclick="">Ouyang, Li, and Racine 2009</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
+<li><p>This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters that <span class="math inline">\(\to0\)</span> as <span class="math inline">\(n\to\infty\)</span> with <em>categorical</em> kernel functions <span class="citation" data-cites="LI_OUYANG_RACINE:2009">(<a href="#/references" role="doc-biblioref" onclick="">Ouyang, Li, and Racine 2009</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/categoricalkernel_c74e9e4f83ceedd56bb5462b3cace0d7">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -526,6 +526,7 @@ Comments by Jeffrey Racine @ CESG 2023
 </ul>
 <aside class="notes">
 <p>The authors consider point mass, i.e., discrete support, distributions for <span class="math inline">\(X\)</span></p>
+<p>This holds (Bierens) when bandwidths shrink at a very fast rate (much faster than for the typical case)</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
