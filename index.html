@@ -524,12 +524,25 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div></li>
 </ul>
+<aside class="notes">
+<p>The authors consider point mass, i.e., discrete support, distributions for <span class="math inline">\(X\)</span></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-do-we-know-xinmathbbr1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
 <li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
-<li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
+<li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability as <span class="math inline">\(n\to\infty\)</span> when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_0e19f258f2e43ddd55cfa482aca8678a">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -540,12 +553,25 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div></li>
 </ul>
+<aside class="notes">
+<p>The authors consider continuous support distributions for <span class="math inline">\(X\)</span></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-do-we-know-xinmathbbr1-1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
 <li><p>When <span class="math inline">\(X\)</span> has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
-<li><p>This can be attained when using, e.g., cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span></p>
+<li><p>This can be attained when using, e.g., cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span> with nonstandard bandwidth behaviour (i.e., <span class="math inline">\(h\to\infty\)</span> as <span class="math inline">\(n\to\infty\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernelglp_83cce0379d3a9a9b7be631467180e0c6">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -556,11 +582,25 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div></li>
 </ul>
+<aside class="notes">
+<p>The authors consider only the local constant estimator where <span class="math inline">\(h\to0\)</span> as <span class="math inline">\(n\to\infty\)</span>, and this estimator behaves well for regression, but perhaps rate improvements could be achieved by using this estimator with higher order polynomials</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-do-we-know-xinmathbbr1-2" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence</p></li>
+<li><p>Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence (the same holds true for local polynomial estimators with ad hoc fixed order <span class="math inline">\(p\)</span>)</p></li>
+<li><p>This is the case the authors consider (simulations use <span class="math inline">\(p=0\)</span>, i.e., the Nadaraya-Watson or “local constant” estimator)</p></li>
 <li><p>Using an appropriate bandwidth, for <span class="math inline">\(X\in\mathbb{R}^1\)</span>, it is well-established that <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span> using second-order kernel functions</p></li>
 <li><p>The authors consider, instead, cases where the convergence rate, when using <em>continuous</em> kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of <span class="math inline">\(X\)</span></p></li>
 </ul>
@@ -568,18 +608,24 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="assessing-pointwise-rates-l2" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ul>
-<li><p>Bandwidth choice (“fixed”) is ISE/IMSE optimal (i.e., “global” rather than “pointwise”)</p></li>
-<li><p>Is a fixed bandwidth the best in this setting?</p></li>
+<li><p>Bandwidths are “global” rather than “pointwise” (“fixed” and IMSE-optimal)</p></li>
+<li><p>Is a fixed bandwidth the best in this setting? IMSE-optimal appropriate?</p></li>
 <li><p>What about “locally adaptive” bandwidths?</p></li>
 <li><p>The simulations are extensive but might be improved</p></li>
-<li><p>I am not sure I learn anything about <em>rates</em> from the simulations</p>
+</ul>
+</section>
+<section id="assessing-pointwise-rates-l2-1" class="slide level2 center">
+<h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ul>
+<li><p>I am not sure I learn much about <em>rates</em> from the simulations</p>
+<ul>
+<li><p>The pointwise bias for the local constant estimator of <span class="math inline">\(g(x)=E(Y|X=x)\)</span> is <span class="math inline">\(\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2\)</span> and <span class="math inline">\(h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2\)</span> for the local linear estimator</p></li>
 <li><p>They present figures, for a given <span class="math inline">\(n\)</span>, that reveal how <em>pointwise</em> RMSE varies over <span class="math inline">\(X\)</span></p></li>
 <li><p>I would be more interested in how <em>pointwise</em> RMSE varies over <span class="math inline">\(n\)</span> (i.e., the rate of convergence)</p></li>
 </ul></li>
 </ul>
 </section>
-<section id="assessing-pointwise-rates-l2-1" class="slide level2 center">
+<section id="assessing-pointwise-rates-l2-2" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ul>
 <li><p>Perhaps the following might be an alternative to the existing simulations</p>

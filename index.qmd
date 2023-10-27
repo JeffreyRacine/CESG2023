@@ -151,11 +151,15 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
     ```
 
+::: notes
+The authors consider point mass, i.e., discrete support, distributions for $X$
+:::
+
 ## What do we know ($X\in\mathbb{R}^1$)?
 
 -   When $X$ has continuous support but is *unrelated* to $Y$, kernel smoothing via the Nadaraya-Watson estimator can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
--   This can be attained when using, e.g., cross-validation to select bandwidths that select $h\to\infty$ with high probability when using *continuous* kernel functions [@HALL_LI_RACINE:2007]
+-   This can be attained when using, e.g., cross-validation to select bandwidths that select $h\to\infty$ with high probability as $n\to\infty$ when using *continuous* kernel functions [@HALL_LI_RACINE:2007]
 
     ```{r continuouskernel}
     #| out.width = "75%"
@@ -173,11 +177,15 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     legend("topleft",c("Oracle","NP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
     ```
 
+::: notes
+The authors consider continuous support distributions for $X$
+:::
+
 ## What do we know ($X\in\mathbb{R}^1$)?
 
 -   When $X$ has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
--   This can be attained when using, e.g., cross-validation to select the bandwidth *and* polynomial order when using *continuous* kernel functions [@HALL_RACINE:2015]
+-   This can be attained when using, e.g., cross-validation to select the bandwidth *and* polynomial order when using *continuous* kernel functions [@HALL_RACINE:2015] with nonstandard bandwidth behaviour (i.e., $h\to\infty$ as $n\to\infty$)
 
     ```{r continuouskernelglp}
     #| out.width = "75%"
@@ -197,9 +205,15 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
     legend("topleft",c("Oracle","NP-GLP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
     ```
 
+::: notes
+The authors consider only the local constant estimator where $h\to0$ as $n\to\infty$, and this estimator behaves well for regression, but perhaps rate improvements could be achieved by using this estimator with higher order polynomials
+:::
+
 ## What do we know ($X\in\mathbb{R}^1$)?
 
--   Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence
+-   Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence (the same holds true for local polynomial estimators with ad hoc fixed order $p$)
+
+-   This is the case the authors consider (simulations use $p=0$, i.e., the Nadaraya-Watson or "local constant" estimator)
 
 -   Using an appropriate bandwidth, for $X\in\mathbb{R}^1$, it is well-established that ${\text RMSE}\propto n^{-2/5}$ using second-order kernel functions
 
@@ -207,19 +221,24 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 ## Assessing Pointwise Rates ($L^2$)
 
--   Bandwidth choice ("fixed") is ISE/IMSE optimal (i.e., "global" rather than "pointwise")
+-   Bandwidths are "global" rather than "pointwise" ("fixed" and IMSE-optimal)
 
--   Is a fixed bandwidth the best in this setting?
+-   Is a fixed bandwidth the best in this setting? IMSE-optimal appropriate?
 
 -   What about "locally adaptive" bandwidths?
 
 -   The simulations are extensive but might be improved
 
--   I am not sure I learn anything about *rates* from the simulations
+## Assessing Pointwise Rates ($L^2$)
+
+-   I am not sure I learn much about *rates* from the simulations
+
+    -   The pointwise bias for the local constant estimator of $g(x)=E(Y|X=x)$ is $\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2$  and $h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2$ for the local linear estimator
 
     -   They present figures, for a given $n$, that reveal how *pointwise* RMSE varies over $X$
 
     -   I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence)
+
 
 ## Assessing Pointwise Rates ($L^2$)
 
