@@ -512,8 +512,8 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbd1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{D}^1\)</span>)?</h2>
 <ul>
-<li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
-<li><p>This is achieved by using, e.g., cross-validation to select smoothing parameters when using <em>categorical</em> kernel functions <span class="citation" data-cites="LI_OUYANG_RACINE:2009">(<a href="#/references" role="doc-biblioref" onclick="">Ouyang, Li, and Racine 2009</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
+<li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
+<li><p>This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters with <em>categorical</em> kernel functions <span class="citation" data-cites="LI_OUYANG_RACINE:2009">(<a href="#/references" role="doc-biblioref" onclick="">Ouyang, Li, and Racine 2009</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/categoricalkernel_c74e9e4f83ceedd56bb5462b3cace0d7">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -541,8 +541,8 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbr1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
-<li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability as <span class="math inline">\(n\to\infty\)</span> when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
+<li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
+<li><p>This can arise using the Nadaraya-Watson method with cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability as <span class="math inline">\(n\to\infty\)</span> using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_0e19f258f2e43ddd55cfa482aca8678a">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -570,8 +570,8 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbr1-1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>When <span class="math inline">\(X\)</span> has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
-<li><p>This can be attained when using, e.g., cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span> with nonstandard bandwidth behaviour (i.e., <span class="math inline">\(h\to\infty\)</span> as <span class="math inline">\(n\to\infty\)</span>)</p>
+<li><p>When <span class="math inline">\(X\)</span> has continuous support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
+<li><p>This can occur using Generalized Local Polynomial methods and cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span> with nonstandard bandwidth behaviour (i.e., <span class="math inline">\(h\to\infty\)</span> as <span class="math inline">\(n\to\infty\)</span>)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernelglp_83cce0379d3a9a9b7be631467180e0c6">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -599,8 +599,8 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbr1-2" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence (the same holds true for local polynomial estimators with ad hoc fixed order <span class="math inline">\(p\)</span>)</p></li>
-<li><p>This is the case the authors consider (simulations use <span class="math inline">\(p=0\)</span>, i.e., the Nadaraya-Watson or “local constant” estimator)</p></li>
+<li><p>Otherwise, when kernel smoothing under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence (holds for local polynomial estimators with ad hoc fixed order <span class="math inline">\(p\)</span>)</p></li>
+<li><p>This is the case the authors consider for their simulations, i.e., they use <span class="math inline">\(p=0\)</span>, i.e., the Nadaraya-Watson or “local constant” estimator</p></li>
 <li><p>Using an appropriate bandwidth, for <span class="math inline">\(X\in\mathbb{R}^1\)</span>, it is well-established that <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span> using second-order kernel functions</p></li>
 <li><p>The authors consider, instead, cases where the convergence rate, when using <em>continuous</em> kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of <span class="math inline">\(X\)</span></p></li>
 </ul>
@@ -608,20 +608,23 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="assessing-pointwise-rates-l2" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ul>
+<li><p>The authors consider a conventional kernel approach</p></li>
 <li><p>Bandwidths are “global” rather than “pointwise” (“fixed” and IMSE-optimal)</p></li>
-<li><p>Is a fixed bandwidth the best in this setting? IMSE-optimal appropriate?</p></li>
+<li><p>However, Is a fixed bandwidth wise in this setting?</p></li>
+<li><p>They use cross-validation, which minimizes IMSE</p></li>
+<li><p>Is an IMSE-optimal bandwidth appropriate?</p></li>
 <li><p>What about “locally adaptive” bandwidths?</p></li>
-<li><p>The simulations are extensive but might be improved</p></li>
+<li><p>The simulations are extensive but might be improved to better convey the message</p></li>
 </ul>
 </section>
 <section id="assessing-pointwise-rates-l2-1" class="slide level2 center">
 <h2>Assessing Pointwise Rates (<span class="math inline">\(L^2\)</span>)</h2>
 <ul>
-<li><p>I am not sure I learn much about <em>rates</em> from the simulations</p>
+<li><p>In particular, I am not sure I gleaned very much about <em>rates</em> from the simulations</p>
 <ul>
-<li><p>The pointwise bias for the local constant estimator of <span class="math inline">\(g(x)=E(Y|X=x)\)</span> is <span class="math inline">\(\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2\)</span> and <span class="math inline">\(h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2\)</span> for the local linear estimator</p></li>
 <li><p>They present figures, for a given <span class="math inline">\(n\)</span>, that reveal how <em>pointwise</em> RMSE varies over <span class="math inline">\(X\)</span></p></li>
-<li><p>I would be more interested in how <em>pointwise</em> RMSE varies over <span class="math inline">\(n\)</span> (i.e., the rate of convergence)</p></li>
+<li><p>But, e.g., the <em>pointwise</em> bias for the local constant estimator of <span class="math inline">\(g(x)=E(Y|X=x)\)</span> using the kernel functions the authors adopt can be shown to be <span class="math inline">\(\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2\)</span> (and is <span class="math inline">\(h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2\)</span> for the local linear estimator), which varies over <span class="math inline">\(X\)</span></p></li>
+<li><p>I would be more interested in how <em>pointwise</em> RMSE varies over <span class="math inline">\(n\)</span> (i.e., the rate of convergence), perhaps others might be as well</p></li>
 </ul></li>
 </ul>
 </section>

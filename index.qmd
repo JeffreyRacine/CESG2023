@@ -129,9 +129,9 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 ## What do we know ($X\in\mathbb{D}^1$)?
 
--   When $X$ has discrete support, kernel smoothing via the Nadaraya-Watson estimator can attain a $\sqrt{n}$ rate for $E(Y|X=x)$
+-   When $X$ has discrete support, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)$
 
--   This is achieved by using, e.g., cross-validation to select smoothing parameters when using *categorical* kernel functions [@LI_OUYANG_RACINE:2009] or *continuous* kernel functions [@BIERENS:1983]
+-   This is achieved using the Nadaraya-Watson method and cross-validation to select smoothing parameters with *categorical* kernel functions [@LI_OUYANG_RACINE:2009] or *continuous* kernel functions [@BIERENS:1983]
 
     ```{r categoricalkernel}
     #| out.width = "75%"
@@ -157,9 +157,9 @@ The authors consider point mass, i.e., discrete support, distributions for $X$
 
 ## What do we know ($X\in\mathbb{R}^1$)?
 
--   When $X$ has continuous support but is *unrelated* to $Y$, kernel smoothing via the Nadaraya-Watson estimator can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
+-   When $X$ has continuous support but is *unrelated* to $Y$, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
--   This can be attained when using, e.g., cross-validation to select bandwidths that select $h\to\infty$ with high probability as $n\to\infty$ when using *continuous* kernel functions [@HALL_LI_RACINE:2007]
+-   This can arise using the Nadaraya-Watson method with cross-validation to select bandwidths that select $h\to\infty$ with high probability as $n\to\infty$ using *continuous* kernel functions [@HALL_LI_RACINE:2007]
 
     ```{r continuouskernel}
     #| out.width = "75%"
@@ -183,9 +183,9 @@ The authors consider continuous support distributions for $X$
 
 ## What do we know ($X\in\mathbb{R}^1$)?
 
--   When $X$ has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
+-   When $X$ has continuous support, kernel smoothing can attain a $\sqrt{n}$ rate for $E(Y|X=x)=E(Y)$
 
--   This can be attained when using, e.g., cross-validation to select the bandwidth *and* polynomial order when using *continuous* kernel functions [@HALL_RACINE:2015] with nonstandard bandwidth behaviour (i.e., $h\to\infty$ as $n\to\infty$)
+-   This can occur using Generalized Local Polynomial methods and cross-validation to select the bandwidth *and* polynomial order when using *continuous* kernel functions [@HALL_RACINE:2015] with nonstandard bandwidth behaviour (i.e., $h\to\infty$ as $n\to\infty$)
 
     ```{r continuouskernelglp}
     #| out.width = "75%"
@@ -211,9 +211,9 @@ The authors consider only the local constant estimator where $h\to0$ as $n\to\in
 
 ## What do we know ($X\in\mathbb{R}^1$)?
 
--   Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence (the same holds true for local polynomial estimators with ad hoc fixed order $p$)
+-   Otherwise, when kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence (holds for local polynomial estimators with ad hoc fixed order $p$)
 
--   This is the case the authors consider (simulations use $p=0$, i.e., the Nadaraya-Watson or "local constant" estimator)
+-   This is the case the authors consider for their simulations, i.e., they use $p=0$, i.e., the Nadaraya-Watson or "local constant" estimator
 
 -   Using an appropriate bandwidth, for $X\in\mathbb{R}^1$, it is well-established that ${\text RMSE}\propto n^{-2/5}$ using second-order kernel functions
 
@@ -221,24 +221,29 @@ The authors consider only the local constant estimator where $h\to0$ as $n\to\in
 
 ## Assessing Pointwise Rates ($L^2$)
 
+-   The authors consider a conventional kernel approach
+
 -   Bandwidths are "global" rather than "pointwise" ("fixed" and IMSE-optimal)
 
--   Is a fixed bandwidth the best in this setting? IMSE-optimal appropriate?
+-   However, Is a fixed bandwidth wise in this setting?
+
+-   They use cross-validation, which minimizes IMSE
+
+-   Is an IMSE-optimal bandwidth appropriate?
 
 -   What about "locally adaptive" bandwidths?
 
--   The simulations are extensive but might be improved
+-   The simulations are extensive but might be improved to better convey the message
 
 ## Assessing Pointwise Rates ($L^2$)
 
--   I am not sure I learn much about *rates* from the simulations
-
-    -   The pointwise bias for the local constant estimator of $g(x)=E(Y|X=x)$ is $\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2$  and $h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2$ for the local linear estimator
+-   In particular, I am not sure I gleaned very much about *rates* from the simulations
 
     -   They present figures, for a given $n$, that reveal how *pointwise* RMSE varies over $X$
+    
+    -   But, e.g., the *pointwise* bias for the local constant estimator of $g(x)=E(Y|X=x)$ using the kernel functions the authors adopt can be shown to be $\frac{h^2}{2f(x)}\left(2g'(x)f'(x)+g^{''}(x)f(x)\right)\kappa_2$ (and is $h^2\left(\frac{1}{2}g^{''}(x)\right)\kappa_2$ for the local linear estimator), which varies over $X$
 
-    -   I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence)
-
+    -   I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence), perhaps others might be as well
 
 ## Assessing Pointwise Rates ($L^2$)
 
