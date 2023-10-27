@@ -8,6 +8,8 @@ M <- 1000
 
 ## ----categoricalkernel--------------------------------------------------------
 #| out.width = "75%"
+library(crs)
+options(crs.messages=FALSE)
 set.seed(42)
 n <- 100
 X <- sort(rbinom(n,5,.3))
@@ -31,11 +33,29 @@ dgp <- rep(1,n)
 Y <- dgp + rnorm(n)
 plot(X,Y,cex=.5,col="grey")
 ghat.dgp <- lm(Y~1)
-points(X,fitted(ghat.dgp),col=2)
+lines(X,fitted(ghat.dgp),col=2,lty=1)
 ghat.nw <- npreg(Y~X,bwtype="fixed",ckertype="epanechnikov")
-points(X,fitted(ghat.nw),col=3)
-points(X,dgp,col=4)
-legend("topleft",c("Oracle","NP","DGP"),pch=1,col=2:4,bty="n")
+lines(X,fitted(ghat.nw),col=3,lty=2,lwd=2)
+lines(X,dgp,col=4,lty=3,lwd=3)
+legend("topleft",c("Oracle","NP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
+
+
+## ----continuouskernelglp------------------------------------------------------
+#| out.width = "75%"
+library(crs)
+options(crs.messages=FALSE)
+set.seed(42)    
+n <- 500
+X <- sort(runif(n))
+dgp <- sin(2*pi*X)
+Y <- dgp + rnorm(n,sd=.25*sd(dgp))
+plot(X,Y,cex=.25,col="grey")
+ghat.dgp <- lm(Y~dgp)
+lines(X,fitted(ghat.dgp),col=2,lty=1)
+ghat.glp <- npglpreg(Y~X)
+lines(X,fitted(ghat.glp),col=3,lty=2,lwd=2)
+lines(X,dgp,col=4,lty=3,lwd=2)
+legend("topleft",c("Oracle","NP-GLP","DGP"),lty=1:3,lwd=c(1,2,2),col=2:4,bty="n")
 
 
 ## ----ordered------------------------------------------------------------------

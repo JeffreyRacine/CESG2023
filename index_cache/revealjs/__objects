@@ -13,3 +13,4 @@ comments	breaks	dgp	fx	fxmsd	ghat.dgp	ghat.nw	n	rfxmsd	x	X	xlim	Y	ylim
 claw	breaks	dgp	dgp.pred	fitted.array	fitted.array.dgp	foo.claw	fx	fxmsd	ghat.dgp	ghat.nw	i	j	n	n.vec	newdata	newdata.dgp	rfxmsd	rmse	rmse.dgp	rmse.dgp.pointwise	rmse.pointwise	x	X	X.pred	X.pred.dgp	xlim	Y	ylim
 clawtable	
 illustrative	
+continuouskernelglp	dgp	ghat.dgp	ghat.glp	n	X	Y

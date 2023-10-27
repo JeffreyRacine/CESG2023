@@ -466,7 +466,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="setting-cont." class="slide level2 center">
 <h2>Setting Cont.</h2>
 <ul>
-<li><p>The authors consider three cases:</p>
+<li><p>The authors consider three cases for the Nadaraya-Watson estimator:</p>
 <ol type="i">
 <li><p><span class="math inline">\(\Xi=\mathbb{R}^q\)</span> (standard kernel regression)</p></li>
 <li><p><span class="math inline">\(\Xi=\Xi^1\)</span> (univariate metric space, i.e., functional regression)</p></li>
@@ -483,9 +483,9 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbd1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{D}^1\)</span>)?</h2>
 <ul>
-<li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
-<li><p>This is achieved by using, e.g., cross-validation to select smoothing parameters when using <em>categorical</em> kernel functions <span class="citation" data-cites="LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Li and Racine 2007</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/categoricalkernel_0baddb0a7fb2f9f5942fe15dee47d78b">
+<li><p>When <span class="math inline">\(X\)</span> has discrete support, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)\)</span></p></li>
+<li><p>This is achieved by using, e.g., cross-validation to select smoothing parameters when using <em>categorical</em> kernel functions <span class="citation" data-cites="LI_OUYANG_RACINE:2009">(<a href="#/references" role="doc-biblioref" onclick="">Ouyang, Li, and Racine 2009</a>)</span> or <em>continuous</em> kernel functions <span class="citation" data-cites="BIERENS:1983">(<a href="#/references" role="doc-biblioref" onclick="">Bierens 1983</a>)</span></p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/categoricalkernel_c74e9e4f83ceedd56bb5462b3cace0d7">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -499,9 +499,9 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbr1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
+<li><p>When <span class="math inline">\(X\)</span> has continuous support but is <em>unrelated</em> to <span class="math inline">\(Y\)</span>, kernel smoothing via the Nadaraya-Watson estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
 <li><p>This can be attained when using, e.g., cross-validation to select bandwidths that select <span class="math inline">\(h\to\infty\)</span> with high probability when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_LI_RACINE:2007">(<a href="#/references" role="doc-biblioref" onclick="">Hall, Li, and Racine 2007</a>)</span></p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_fb59e5b6bd98dc745fb648b94c901113">
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernel_bae932d933fc537cccf3fb0d5d949dfb">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -515,7 +515,23 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="what-do-we-know-xinmathbbr1-1" class="slide level2 center">
 <h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
 <ul>
-<li><p>Otherwise, when kernel smoothing under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence</p></li>
+<li><p>When <span class="math inline">\(X\)</span> has continuous support, kernel smoothing via the Generalized Local Polynomial estimator can attain a <span class="math inline">\(\sqrt{n}\)</span> rate for <span class="math inline">\(E(Y|X=x)=E(Y)\)</span></p></li>
+<li><p>This can be attained when using, e.g., cross-validation to select the bandwidth <em>and</em> polynomial order when using <em>continuous</em> kernel functions <span class="citation" data-cites="HALL_RACINE:2015">(<a href="#/references" role="doc-biblioref" onclick="">Hall and Racine 2015</a>)</span></p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/continuouskernelglp_0f43147486ddc7085d5877b5b54d9048">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/continuouskernelglp-1.png" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="what-do-we-know-xinmathbbr1-2" class="slide level2 center">
+<h2>What do we know (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)?</h2>
+<ul>
+<li><p>Otherwise, when kernel smoothing with the Nadaraya-Watson estimator under common regularity conditions, we attain a <span class="math inline">\(\sqrt{nh}\)</span> rate of convergence</p></li>
 <li><p>Using an appropriate bandwidth, for <span class="math inline">\(X\in\mathbb{R}^1\)</span>, it is well-established that <span class="math inline">\({\text RMSE}\propto n^{-2/5}\)</span> using second-order kernel functions</p></li>
 <li><p>The authors consider, instead, cases where the convergence rate, when using <em>continuous</em> kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of <span class="math inline">\(X\)</span></p></li>
 </ul>
@@ -793,10 +809,13 @@ Comments by Jeffrey Racine @ CESG 2023
 Bierens, Herman J. 1983. <span>“Uniform Consistency of Kernel Estimators of a Regression Function Under Generalized Conditions.”</span> <em>Journal of the American Statistical Association</em> 78 (383): 699–707. <a href="http://www.jstor.org/stable/2288140">http://www.jstor.org/stable/2288140</a>.
 </div>
 <div id="ref-HALL_LI_RACINE:2007" class="csl-entry" role="listitem">
-Hall, Peter, Qi Li, and Jeffrey S. Racine. 2007. <span>“Nonparametric Estimation of Regression Functions in the Presence of Irrelevant Regressors.”</span> <em>The Review of Economics and Statistics</em> 89 (4): 784–89. <a href="http://www.jstor.org/stable/40043100">http://www.jstor.org/stable/40043100</a>.
+Hall, Peter G., Qi Li, and Jeffrey S. Racine. 2007. <span>“Nonparametric Estimation of Regression Functions in the Presence of Irrelevant Regressors.”</span> <em>The Review of Economics and Statistics</em> 89 (4): 784–89. <a href="http://www.jstor.org/stable/40043100">http://www.jstor.org/stable/40043100</a>.
 </div>
-<div id="ref-LI_RACINE:2007" class="csl-entry" role="listitem">
-Li, Q., and J. S. Racine. 2007. <em>Nonparametric Econometrics: Theory and Practice</em>. Princeton: Princeton University Press.
+<div id="ref-HALL_RACINE:2015" class="csl-entry" role="listitem">
+Hall, Peter G., and Jeffrey S. Racine. 2015. <span>“Infinite Order Cross-Validated Local Polynomial Regression.”</span> <em>Journal of Econometrics</em> 185 (2): 510–25. https://doi.org/<a href="https://doi.org/10.1016/j.jeconom.2014.06.003">https://doi.org/10.1016/j.jeconom.2014.06.003</a>.
+</div>
+<div id="ref-LI_OUYANG_RACINE:2009" class="csl-entry" role="listitem">
+Ouyang, Desheng, Qi Li, and Jeffrey S. Racine. 2009. <span>“Nonparametric Estimation of Regression Functions with Discrete Regressors.”</span> <em>Econometric Theory</em> 25 (1): 1–42. <a href="http://www.jstor.org/stable/20532431">http://www.jstor.org/stable/20532431</a>.
 </div>
 </div>
 </section>
