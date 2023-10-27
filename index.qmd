@@ -7,6 +7,7 @@ format:
   revealjs:
     background-transition: fade
     center: true
+    chalkboard: true    
     css: custom.css
     footer: "<a href='https://jeffreyracine.github.io/CESG2023'>jeffreyracine.github.io/CESG2023</a> | <a href='https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide'>Translate</a>"
     html-math-method: mathjax
@@ -62,28 +63,25 @@ M <- 1000
 
 ## Slide Pro-Tips {.smaller}
 
-::: {.nonincremental}
+::: nonincremental
+-   Link to slides (case sensitive) <a href="https://jeffreyracine.github.io/CESG2023">jeffreyracine.github.io/CESG2023</a>, <a href="https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Translate slides</a>
 
-- Link to slides (case sensitive) <a href="https://jeffreyracine.github.io/CESG2023">jeffreyracine.github.io/CESG2023</a>, <a href="https://jeffreyracine-github-io.translate.goog/CESG2023/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Translate slides</a>
+-   View **full screen** by pressing the F key (press the Esc key to revert)
 
-- View **full screen** by pressing the F key (press the Esc key to revert)
+-   Access **navigation menu** by pressing the M key (click X in navigation menu to close)
 
-- Access **navigation menu** by pressing the M key (click X in navigation menu to close)
+-   **Advance** using arrow keys
 
-- **Advance** using arrow keys
+-   **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
 
-- **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
+-   **Export to a PDF** by pressing the E key (wait a few seconds, then print \[or print using system dialog\], enable landscape layout, then save as PDF - press the E key to revert)
 
-- **Export to a PDF** by pressing the E key (wait a few seconds, then print [or print using system dialog], enable landscape layout, then save as PDF - press the E key to revert)
-
-- Enable drawing tools - chalk **board** by pressing the B key (B to revert), notes **canvas** by pressing the C key (C to revert), press the Del key to erase, press the D key to **download drawings**
-
+-   Enable drawing tools - chalk **board** by pressing the B key (B to revert), notes **canvas** by pressing the C key (C to revert), press the Del key to erase, press the D key to **download drawings**
 :::
 
-::: {.notes}
+::: notes
 Encourage participants to print/save a PDF copy of the slides as there is no guarantee that this material will be there when they realize it might be useful
 :::
-
 
 ## Project Overview
 
@@ -219,22 +217,22 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
 -   I am not sure I learn anything about *rates* from the simulations
 
-    - They present figures, for a given $n$, that reveal how *pointwise* RMSE varies over $X$
-    
-    - I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence)
+    -   They present figures, for a given $n$, that reveal how *pointwise* RMSE varies over $X$
+
+    -   I would be more interested in how *pointwise* RMSE varies over $n$ (i.e., the rate of convergence)
 
 ## Assessing Pointwise Rates ($L^2$)
 
 -   Perhaps the following might be an alternative to the existing simulations
 
     -   run Monte Carlo simulations comparing various methods on predictions at a set of support points (as is currently done by the authors)
-    
+
     -   consider a range of sample sizes
-    
+
     -   for each Monte Carlo replication record the pointwise RMSE
-    
+
     -   finally, regress $\log({\text RMSE})$ on $\log(n)$ and record the coefficient on $\log(n)$
-    
+
 -   The coefficient on $\log(n)$ will be the empirical rate of convergence
 
 -   For example, if ${\text RMSE} \propto n^{-2/5}$ then $\log({\text RMSE}) =\alpha+\beta\log(n)$ and $\beta$ can be estimated and should be close to $-0.40$
