@@ -8,6 +8,7 @@ format:
     background-transition: fade
     center: true
     css: custom.css
+    footer: "https://jeffreyracine.github.io/CESG2023 | J. Racine"
     html-math-method: mathjax
     include-in-header:
       - text: |
@@ -173,7 +174,7 @@ The fourteenth letter in the Greek alphabet, $\Xi$ is pronounced "kai"
 
     d.  regress log(RMSE) on log(n) (the coefficient on log(n) will be the empirical rate of convergence, i.e., if ${\text RMSE} =\delta n^{-1/2}$ then $\log({\text RMSE}) =\alpha+\beta\log(n)$ and $\beta$ can be estimated)
 
-## Catgorical Kernel, Relevant $X\in\mathbb{D}^1$
+## Categorical Kernel, Relevant $X\in\mathbb{D}^1$
 
 We consider $Y=\sin(2X)+\epsilon$, where $X\{0,1,2\}$
 
@@ -419,7 +420,7 @@ knitr::kable(foo.ct,digits=2,align="rlll")
 
 It appears that the kernel rate of convergence is slower than the Oracle with **relevant** **continuous regressors** and **data-driven bandwidth choice** with a **continuous support kernel function**
 
-## Simlations in KSZ-W (the "trinormal" case)
+## Simulations in KSZ-W (the "trinormal" case)
 
 The authors state "The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators." and that "This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here."
 
@@ -530,7 +531,7 @@ foo.claw <- data.frame(X.pred,rmse.dgp.pointwise,rmse.pointwise,rmse.pointwise/r
 colnames(foo.claw) <- c("X","Oracle","NW","ratio")
 ```
 
-## Simlations in KSZ-W (the "trinormal" case)
+## Simulations in KSZ-W (the "trinormal" case)
 
 The KSZ-W paper considers the case where $X$ is trinormal, but results are reported for a fixed $n$
 

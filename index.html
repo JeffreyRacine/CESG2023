@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Comments by Jeffrey Racine @ CESG 2023">
-  <meta name="dcterms.date" content="2023-10-25">
+  <meta name="dcterms.date" content="2023-10-26">
   <title>Kernel estimation in regression on vector and function spaces</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -429,7 +429,7 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 
-  <p class="date">2023-10-25</p>
+  <p class="date">2023-10-26</p>
 </section>
 <section id="project-overview" class="slide level2 center">
 <h2>Project Overview</h2>
@@ -535,8 +535,8 @@ Comments by Jeffrey Racine @ CESG 2023
 </ol></li>
 </ol>
 </section>
-<section id="catgorical-kernel-relevant-xinmathbbd1" class="slide level2 center">
-<h2>Catgorical Kernel, Relevant <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
+<section id="categorical-kernel-relevant-xinmathbbd1" class="slide level2 center">
+<h2>Categorical Kernel, Relevant <span class="math inline">\(X\in\mathbb{D}^1\)</span></h2>
 <p>We consider <span class="math inline">\(Y=\sin(2X)+\epsilon\)</span>, where <span class="math inline">\(X\{0,1,2\}\)</span></p>
 <p>We implement the “Oracle” estimator and the kernel estimator (for both we expect <span class="math inline">\(\beta=-1/2\)</span>, i.e., <span class="math inline">\({\text RMSE}\propto n^{-1/2}\)</span>)</p>
 <p>The following table shows the “empirical” rate of convergence ($\hat\beta$) in this case</p>
@@ -697,13 +697,13 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 <p>It appears that the kernel rate of convergence is slower than the Oracle with <strong>relevant</strong> <strong>continuous regressors</strong> and <strong>data-driven bandwidth choice</strong> with a <strong>continuous support kernel function</strong></p>
 </section>
-<section id="simlations-in-ksz-w-the-trinormal-case" class="slide level2 center">
-<h2>Simlations in KSZ-W (the “trinormal” case)</h2>
+<section id="simulations-in-ksz-w-the-trinormal-case" class="slide level2 center">
+<h2>Simulations in KSZ-W (the “trinormal” case)</h2>
 <p>The authors state “The simulations demonstrate the effect of singularity on point-wise convergence rates for the kernel estimators.” and that “This a.c. distribution represents features (high derivatives) that are more reflective of unsmooth densities we want to emphasize here.”</p>
 
 <img data-src="index_files/figure-revealjs/claw-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="simlations-in-ksz-w-the-trinormal-case-1" class="slide level2 center">
-<h2>Simlations in KSZ-W (the “trinormal” case)</h2>
+<section id="simulations-in-ksz-w-the-trinormal-case-1" class="slide level2 center">
+<h2>Simulations in KSZ-W (the “trinormal” case)</h2>
 <p>The KSZ-W paper considers the case where <span class="math inline">\(X\)</span> is trinormal, but results are reported for a fixed <span class="math inline">\(n\)</span></p>
 <p>The RMSE varies across the support for a fixed <span class="math inline">\(n\)</span>, but although the authors say the simulations inform us about the rate of convergence, they do not report the RMSE <em>rate</em></p>
 <p>Perhaps results similar to that below would help (perhaps at the same uniform grid the authors use, or perhaps simply at a coarse grid of points</p>
@@ -742,7 +742,7 @@ Comments by Jeffrey Racine @ CESG 2023
 </div>
 </div>
 </section>
-<section id="simulations-in-ksz-w-the-trinormal-case" class="slide level2 center">
+<section id="simulations-in-ksz-w-the-trinormal-case-2" class="slide level2 center">
 <h2>Simulations in KSZ-W (the “trinormal” case)</h2>
 <p>To conduct the suggested exercise, the code is as follows:</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/illustrative_d3d4fd35ecbfcaf18f3f38de69643bd8">
@@ -786,7 +786,7 @@ Comments by Jeffrey Racine @ CESG 2023
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 <div class="footer footer-default">
-
+<p>https://jeffreyracine.github.io/CESG2023 | J. Racine</p>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-BIERENS:1983" class="csl-entry" role="listitem">

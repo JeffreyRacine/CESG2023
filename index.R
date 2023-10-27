@@ -358,3 +358,42 @@ colnames(foo.claw) <- c("X","Oracle","NW","ratio")
 ## ----clawtable----------------------------------------------------------------
 knitr::kable(foo.claw,digits=2,align="rlll")
 
+
+## ----illustrative,echo=TRUE,eval=FALSE----------------------------------------
+## ## Monte Carlo reps, vector of n, vector of X.pred
+## M <- 1000
+## n.vec <- c(50,100,200,400,800,1600,3200,6400,12800)
+## X.pred <- c(-.767,-(.767-0.8),-(.767-1.2))
+## ## Prediction data frame
+## newdata <- data.frame(X=X.pred)
+## ## Storage arrays
+## fitted.array.dgp <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+## fitted.array <- array(NA,dim=c(length(n.vec),M,length(X.pred)))
+## ## Monte Carlo
+## for(j in 1:length(n.vec)) {
+##   for(i in 1:M) {
+##     X <- rfxmsd(n.vec[j])
+##     dgp <- sin(2.5*X)
+##     Y <- dgp + rnorm(n.vec[j],sd=sd(dgp))
+##     ghat.dgp <- lm(Y~sin(2.5*X))
+##     fitted.array.dgp[j,i,] <- predict(ghat.dgp,newdata=newdata)
+##     ghat.nw <- npreg(Y~X,ckertype="epanechnikov")
+##     fitted.array[j,i,] <- predict(ghat.nw,newdata=newdata)
+##   }
+## }
+## ## Compute pointwise RMSE at each support point for each n
+## rmse.dgp <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+## rmse <- matrix(NA,nrow=length(n.vec),ncol=length(X.pred))
+## for(j in 1:length(n.vec)) {
+##   rmse.dgp[j,] <- sqrt(colMeans(sweep(fitted.array.dgp[j,,],2,dgp.pred)^2))
+##   rmse[j,] <- sqrt(colMeans(sweep(fitted.array[j,,],2,dgp.pred)^2))
+## }
+## ## Compute RMSE rate
+## rmse.dgp.pointwise <- numeric()
+## rmse.pointwise <- numeric()
+## for(i in 1:length(X.pred)) {
+##   rmse.dgp.pointwise[i] <- coef(ltsReg(log(rmse.dgp[,i])~log(n.vec)))[2]
+##   rmse.pointwise[i] <- coef(ltsReg(log(rmse[,i])~log(n.vec)))[2]
+## }
+## 
+
