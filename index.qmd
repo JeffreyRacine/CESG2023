@@ -213,13 +213,13 @@ The authors consider only the local constant estimator where $h\to0$ as $n\to\in
 
 ## What do we know ($X\in\mathbb{R}^1$)?
 
--   Otherwise, when kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence (holds for local polynomial estimators with ad hoc fixed order $p$)
+-   When kernel smoothing under common regularity conditions, we attain a $\sqrt{nh}$ rate of convergence (holds for local polynomial estimators with ad hoc fixed order $p$)
 
 -   This is the case the authors consider for their simulations, i.e., they use $p=0$, i.e., the Nadaraya-Watson or "local constant" estimator
 
 -   Using an appropriate bandwidth, for $X\in\mathbb{R}^1$, it is well-established that ${\text RMSE}\propto n^{-2/5}$ using second-order kernel functions
 
--   The authors consider, instead, cases where the convergence rate, when using *continuous* kernel functions can be faster than the usual rate, for instance when there exist mass points in the support of $X$
+-   The authors consider cases where the convergence rate, using *continuous* kernel functions, can be faster than the usual rate, e.g., when there exist mass points in the support of $X$
 
 ## Assessing Pointwise Rates ($L^2$)
 
